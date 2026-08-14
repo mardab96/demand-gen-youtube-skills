@@ -1,6 +1,6 @@
 ---
 name: money-split-review-demand-gen
-description: Breaks a Demand Gen campaign down by where the money actually went across YouTube in-feed, Shorts, Discover and Gmail, because the campaign reports one blended result for four very different surfaces. Use before scaling, when results move without a change, or when a campaign looks fine and feels wrong.
+description: Breaks a Demand Gen campaign down by where the money actually went across YouTube in-feed, Shorts, Discover and Gmail, because the campaign reports one blended result for four very different surfaces. Use before scaling, when results move without a change, when a campaign looks fine and feels wrong, or when cheap impressions arrive in volume and nothing follows.
 ---
 
 # Where Your Money Actually Went - Demand Gen
@@ -58,7 +58,7 @@ Every threshold is a starting heuristic, not a Google rule. Recalibrate per acco
 
 Format rule: before recommending an exclusion, check the creative mix. A split caused by having only one asset ratio is a creative problem wearing a targeting costume, and the exclusion will not fix it.
 
-Reporting limit rule: where the account cannot split the surfaces at all, say so and stop. Do not infer the split from impression volume or from what the interface implies.
+Reporting limit rule: where the account cannot split the surfaces at all, **do not stop, and do not infer the split either.** Switch to the read the account CAN support and say that is what you are doing: format mix against spend pattern, cost per thousand impressions against the account's other campaign types, and week-on-week movement in that figure. That answers the operator's real question, which is whether the money is going somewhere cheap and empty, without pretending to a placement report the platform never gave you. State plainly which of the two reads you ran.
 
 ## Output format
 

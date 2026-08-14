@@ -1,6 +1,6 @@
 # 15 Claude Skills for Demand Gen and YouTube
 
-A pack of 15 production-ready Claude Skills for the Google Ads campaign type that spends across YouTube, Shorts, Discover and Gmail and reports it as one number. They cover where the money actually went, whether the views were attention, how much of the conversion count is exposure rather than action, creative coverage and winners, audience signal, overlap with your other campaigns, feed readiness, frequency, bid strategy fit, conversion lag, incrementality, landing page fit, and the weekly readout.
+A pack of 15 production-ready Claude Skills for the Google Ads campaign type that spends across YouTube, Shorts, Discover and Gmail and reports it as one number. They cover where the money actually went, whether the views were attention, how much of the conversion count is exposure rather than action, creative coverage and winners, whether it found new customers, audience signal, overlap with your other campaigns, feed readiness, frequency, bid strategy fit, conversion lag, incrementality, landing page fit, and the weekly readout.
 
 Each skill is a self-contained `SKILL.md` with explicit triggers, required inputs, an analysis workflow, decision rules with unit-carrying thresholds, a worked example, an output format and guardrails. **Every threshold is labelled as a heuristic to recalibrate per account, never as a published Google rule**, because most of the numbers people quote for this campaign type are working figures rather than documentation.
 
@@ -17,7 +17,7 @@ These skills read exports and hand back a decision. They do not need write acces
 | 3 | Did They Buy Or Did They Just Watch | `view-through-credit-check-demand-gen` | How much of the conversion count is exposure credit |
 | 4 | What Your Creative Is Missing | `creative-coverage-audit-demand-gen` | Which missing asset ratio is quietly narrowing delivery |
 | 5 | Which Video Actually Did The Work | `winning-video-finder-demand-gen` | Which asset carried the campaign, and what to brief next |
-| 6 | Is Shorts Eating Your Budget | `shorts-spend-review-demand-gen` | Whether cheap impressions are buying anything |
+| 6 | Is This Bringing New Customers | `new-customer-share-demand-gen` | Whether upper-funnel spend found people who had never bought |
 | 7 | Who Google Thinks You Want | `audience-signal-review-demand-gen` | Whether your audience signal is steering or decorative |
 | 8 | Are You Paying Twice For The Same Person | `campaign-overlap-check-demand-gen` | Where campaign types are converting the same people |
 | 9 | Is Your Feed Ready For Demand Gen | `feed-readiness-check-demand-gen` | Whether the catalogue can actually serve |
