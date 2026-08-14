@@ -53,6 +53,7 @@ Recommended additional data:
 ## Analysis workflow
 
 1. Compute weekly business outcomes, their median and their spread, so the test can be sized against real noise.
+   **Run `scripts/baseline_spread.py weekly.csv` for this step.** It implements the readiness thresholds in this file and returns a non-zero exit code when the baseline cannot support a readable test, so a decorative holdout has to be approved deliberately rather than by accident.
 2. Choose the shape: geo split where regions are comparable, audience holdout where they are not, on-off where the account is small and the baseline is quiet.
 3. Size the test: how many weeks are needed for a difference to clear normal variation.
 4. Define the single read-out metric, taken from business data and never from the platform's own conversions.
