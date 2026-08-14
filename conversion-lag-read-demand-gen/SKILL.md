@@ -39,7 +39,7 @@ Recommended additional data:
 ## Analysis workflow
 
 1. For each day in the overlap, compare the value at first pull against the later pull.
-   **Run `scripts/lag_curve.py early.csv late.csv` rather than doing this by eye.** It owns none of the thresholds, it implements the ones in this file, and it exists because matching two CSVs day by day is where a manual read silently misaligns rows. Its output is the fill curve and the waiting rule.
+   **Run `../scripts/lag_curve.py early.csv late.csv` rather than doing this by eye.** It owns none of the thresholds, it implements the ones in this file, and it exists because matching two CSVs day by day is where a manual read silently misaligns rows. Its output is the fill curve and the waiting rule.
 2. Compute the share of the final figure visible after 1, 3, 7 and 14 days.
 3. Where possible, compute the curve separately for each credit type the account exposes: click-through, engaged-view and view-through. They fill on different schedules, and Demand Gen carries engaged-view credit inside the headline count, so a single blended curve hides the fastest and the slowest signal at once.
 4. Identify the day the curve flattens.
