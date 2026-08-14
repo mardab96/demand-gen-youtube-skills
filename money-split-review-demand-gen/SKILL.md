@@ -16,6 +16,13 @@ Common user requests:
 - "Is Shorts getting all of it?"
 - "Can I turn off Gmail?"
 
+## When another skill owns the question
+
+When the finding turns out to be the asset set rather than the surfaces, this skill
+names the gap and stops. The production list belongs to
+`creative-coverage-audit-demand-gen`, which owns the asset inventory. Do not produce
+two versions of the same recommendation.
+
 ## Required input
 
 Minimum useful data:
@@ -50,11 +57,15 @@ Recommended additional data:
 
 Every threshold is a starting heuristic, not a Google rule. Recalibrate per account.
 
+Read one number: **the gap in percentage points between a surface's share of spend and its share of conversions.** Every band below is that gap, so the three are exhaustive and a campaign cannot fall between them.
+
 | Verdict | Criteria |
 |---|---|
-| Split is healthy | No single surface above roughly 60% of spend [heuristic] unless it also carries a proportional share of conversions |
-| Watch it | One surface at 60-80% of spend with a conversion share at least 20 percentage points lower |
-| Act on the split | One surface above 80% of spend, OR a surface taking over 30% of spend with near-zero conversions |
+| Split is healthy | No surface with a spend-to-conversion gap above roughly 15 points [heuristic], whatever its share of spend |
+| Watch it | Largest gap 15-35 points |
+| Act on the split | Largest gap above 35 points, OR any surface above 30% of spend with a conversion share under 3% |
+
+`Conversions` and `All conv.` are different columns and on this campaign type the difference is routinely large. **State which column every figure came from.** Two people reading the same export with different columns will produce different verdicts, and neither will know why.
 
 Format rule: before recommending an exclusion, check the creative mix. A split caused by having only one asset ratio is a creative problem wearing a targeting costume, and the exclusion will not fix it.
 
@@ -85,7 +96,7 @@ Which surfaces the account could not report, and what that blocks.
 
 ## Practical example
 
-A campaign spends 71% on one surface that returns 12% of conversions. The creative set is three vertical videos and no landscape or square assets. Output: watch it, no exclusion recommended, and the first move is adding landscape and square assets so the campaign has somewhere else to spend, with a re-read in two weeks.
+A campaign spends 71% on one surface that returns 12% of conversions, a gap of 59 points. The creative set is three vertical videos and no landscape or square assets. Verdict: **act on the split** — 59 points is well above the 35-point line; an earlier draft of this example called it watch it. No exclusion recommended even so, and the first move is adding landscape and square assets so the campaign has somewhere else to spend, with a re-read in two weeks.
 
 ## Guardrails
 

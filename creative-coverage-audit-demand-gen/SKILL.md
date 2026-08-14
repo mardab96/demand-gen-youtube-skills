@@ -32,7 +32,17 @@ Recommended additional data:
 
 ## Before analysis
 
-1. List what the campaign type can serve, then list what this campaign actually has. The gap is the whole analysis.
+1. Start from the inventory below, then list what this campaign actually has. The gap is the whole analysis. Without a written spec the coverage grid has no rows and the model invents the left-hand column on every run.
+
+**Asset inventory this skill grades against** `[heuristic — verify against current Google specs before treating a gap as a fact, these change]`:
+
+| Type | Ratios that matter | Why it matters here |
+|---|---|---|
+| Image | 1.91:1 landscape, 1:1 square, 4:5 portrait | Missing 1:1 or 4:5 narrows feed and vertical surfaces sharply |
+| Video | 16:9 landscape, 9:16 vertical, 1:1 square | Vertical-only sets concentrate on short-form by construction; landscape-only sets never reach it at all |
+| Logo | 1:1, and 4:1 landscape where the format asks for it | Absence blocks some layouts entirely rather than degrading them |
+
+Treat headline and description counts as part of coverage too: a format with one headline has no rotation and behaves like a single asset.
 2. Check for policy-limited or rejected assets before concluding anything is missing; a rejected asset looks identical to an absent one in delivery.
 3. Note asset age. A set that has not changed in months is a fatigue question, not a coverage question, and belongs elsewhere.
 4. Confirm the campaign is not budget-limited for an unrelated reason.
@@ -54,7 +64,7 @@ Every threshold is a starting heuristic, not a Google rule. Recalibrate per acco
 |---|---|
 | Coverage is adequate | Every required ratio present with at least two assets each [heuristic], no rejected assets, spend reaching more than one surface |
 | Coverage is thin | A required ratio present with only one asset, OR one rejected asset in a format with no backup |
-| Coverage is blocking delivery | A required ratio absent entirely, OR spend concentrated on one surface that matches the only ratio present |
+| Coverage is blocking delivery | A required ratio from the inventory absent entirely, OR spend concentrated on one surface that matches the only ratio present |
 
 Two-per-format rule: a single asset per format means one rejection or one fatigue curve takes the whole format offline. Treat one as zero when planning production.
 
@@ -86,7 +96,11 @@ What the account did not expose, such as asset-level performance.
 
 ## Practical example
 
-Campaign has four vertical videos, no square, no landscape and no static images. Spend is 71% on one surface. Two of the four videos are policy-limited. Output: coverage is blocking delivery, production list starts with two landscape videos and two square statics rather than more vertical, and a note that the campaign has effectively two working assets, not four.
+Campaign has four 9:16 videos, no 1:1, no 16:9 and no images at all. Two of the four videos are policy-limited, so the campaign has **two working assets, not four**, and both are the same shape.
+
+Verdict: **coverage is blocking delivery** — three ratios from the inventory are absent entirely. Production list, ranked by what each unlocks rather than by effort: two 16:9 videos first, then 1:1 and 4:5 statics.
+
+**Handoff, so this does not become the same finding twice:** if the operator also arrived here from a spend-concentration reading, that read belongs to `money-split-review-demand-gen` and this skill supplies only the production list. Do not restate the surface split; cite it.
 
 ## Guardrails
 

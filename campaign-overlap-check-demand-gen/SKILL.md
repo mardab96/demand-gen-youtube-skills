@@ -16,6 +16,19 @@ Common user requests:
 - "Should we run PMax and Demand Gen together?"
 - "Where do I cut first?"
 
+## When another skill owns the question
+
+Three skills in this pack are reached by the same sentence, so each says here which
+one owns it rather than leaving the reader to guess:
+
+- **"Demand Gen reports conversions and revenue is flat."** Start here only if the
+  question is *how the conversions were credited*. If the question is *whether the
+  spend caused anything*, that is `incremental-lift-design-demand-gen`. If the
+  question is *whether another campaign already had those people*, that is
+  `campaign-overlap-check-demand-gen`.
+- This skill never designs a test. When its output points at causation, it names the
+  lift skill and stops.
+
 ## Required input
 
 Minimum useful data:

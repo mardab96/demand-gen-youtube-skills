@@ -91,7 +91,11 @@ Ranked by items unlocked.
 
 ## Practical example
 
-Feed submits 1,240 items against a catalogue of 1,900. Of those, 812 are active; one disapproval reason accounts for 310 blocked items. Two of five spot-checked prices are stale by one promotional cycle. Output: not ready, the single disapproval reason ranked first because it unlocks a quarter of the catalogue, and the price staleness flagged as the blocking defect regardless of the counts.
+Feed submits 1,240 items against a catalogue of 1,900. Of those, 812 are active, which is **43% of the intended catalogue** and puts the feed in the "not ready" band on its own. One disapproval reason accounts for 310 blocked items, which is **25% of what was submitted and 16% of the intended catalogue** — both denominators stated, because the guardrail at the bottom of this skill forbids a bare percentage and an earlier draft of this example broke it.
+
+Two of five spot-checked prices are stale by one promotional cycle.
+
+Verdict: **not ready**. The single disapproval reason ranks first in the fix order because it unlocks more items than anything else available, and the price staleness is flagged as blocking regardless of any count, because a wrong price damages trust with the customer rather than merely reducing reach.
 
 ## Guardrails
 

@@ -16,6 +16,19 @@ Common user requests:
 - "Can I just turn it off for a week?"
 - "Is upper funnel worth it for us?"
 
+## When another skill owns the question
+
+Three skills in this pack are reached by the same sentence, so each says here which
+one owns it rather than leaving the reader to guess:
+
+- **"Demand Gen reports conversions and revenue is flat."** Start here only if the
+  question is *how the conversions were credited*. If the question is *whether the
+  spend caused anything*, that is `incremental-lift-design-demand-gen`. If the
+  question is *whether another campaign already had those people*, that is
+  `campaign-overlap-check-demand-gen`.
+- This skill never designs a test. When its output points at causation, it names the
+  lift skill and stops.
+
 ## Required input
 
 Minimum useful data:
@@ -86,7 +99,11 @@ Named explicitly.
 
 ## Practical example
 
-Campaign reports 61 conversions a week; business revenue has been flat for six weeks with 17% variation around its median and no promotion planned. Output: readable, a three-week geo holdout across two comparable regions, read on shop revenue rather than platform conversions, expected outcomes written down in advance, and a stop rule at a 20% revenue drop in the held-out region.
+Campaign reports 61 conversions a week; business revenue has been flat for **nine weeks** with 17% variation around its median and no promotion planned. Nine weeks clears the eight-week floor and 17% clears the 25% spread line, so the verdict is **readable**. An earlier draft of this example used six weeks, which its own entry condition rejects.
+
+Design: a three-week geo holdout across two comparable regions, read on shop revenue rather than platform conversions, expected outcomes written down in advance, and a stop rule at a 20% revenue drop in the held-out region.
+
+**One platform constraint to state in the output, because the reader will hit it immediately:** Google Ads drafts and experiments do not cover this campaign type, so a geo split has to be built by hand as two duplicate campaigns on separate geographies. That carries its own learning period and its own budget, and both belong in the cost the business is accepting. Google's own Conversion Lift study is the alternative worth asking your rep about before building it yourself; it is usually gated on spend.
 
 ## Guardrails
 

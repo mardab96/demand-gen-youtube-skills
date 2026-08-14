@@ -1,6 +1,6 @@
 ---
 name: audience-signal-review-demand-gen
-description: Reviews what the campaign told Google to look for and what Google went and found, so a broad audience is a choice rather than an accident. Use before scaling, when a campaign reaches people the business does not recognise, or when several audience segments perform identically.
+description: Reviews what a Google Ads Demand Gen campaign told Google to look for and what Google went and found, so a broad audience is a choice rather than an accident. Use before scaling, when a campaign reaches people the business does not recognise, or when several audience segments perform identically.
 ---
 
 # Who Google Thinks You Want - Demand Gen

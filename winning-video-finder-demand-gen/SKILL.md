@@ -50,11 +50,13 @@ Recommended additional data:
 
 Every threshold is a starting heuristic, not a Google rule. Recalibrate per account.
 
-| Verdict | Criteria |
-|---|---|
-| Clear winner | One asset with at least roughly 30% better cost per result than the campaign average [heuristic], on 1,000+ impressions and 14+ days live |
-| No winner yet | Assets within roughly 20% of each other, OR the leader has under 1,000 impressions |
-| Delivery artefact, not a winner | One asset holds 70%+ of impressions and its cost per result is close to the campaign average |
+**Run the tests in this order.** The delivery-artefact test comes first, and when it fires you exclude that asset and re-run the other two on what is left. Without a stated order, one asset can satisfy two rows at once and the verdict depends on which row you read first.
+
+| Order | Verdict | Criteria |
+|---:|---|---|
+| 1 | Delivery artefact, not a winner | One asset holds 70%+ of impressions [heuristic] and its cost per result is within roughly 15% of the campaign average. Exclude it, then run tests 2 and 3 on the remainder |
+| 2 | Clear winner | One asset at least roughly 30% better on cost per result than the average of the remainder, on 1,000+ impressions and 14+ days live |
+| 3 | No winner yet | Everything else: assets within roughly 30% of each other, OR the leader is under 1,000 impressions, OR the leader is under 14 days live |
 
 Retirement rule: an asset with meaningful impressions and materially worse cost per result is a retirement candidate. An asset with almost no impressions is not a loser; it never got a hearing, and pausing it teaches nothing.
 
@@ -85,7 +87,13 @@ Assets to stop, and assets that were never really tested.
 
 ## Practical example
 
-Six assets. One carries 68% of impressions at a cost per result close to the average, so it is a delivery artefact rather than a winner. A second asset has 9% of impressions and a cost per result 44% better, on 2,300 impressions over three weeks. Output: no clear winner at campaign level, the small strong asset named as the real signal, brief for the next round built on its opening, and two assets under 400 impressions marked untested rather than failed.
+Six assets. Test 1: one asset carries **74%** of impressions at a cost per result 6% off the campaign average, so it fires the delivery-artefact rule and is excluded.
+
+Test 2 on the remaining five: one asset has 2,300 impressions over 21 days at a cost per result **44% better than the average of the remainder**. That clears all three conditions, so it is the **clear winner** — the earlier draft of this example called it "no winner", which its own table does not support.
+
+Two assets sit under 400 impressions and are marked untested rather than failed, because test 3's impression floor is about whether an asset got a hearing, not about whether it is any good.
+
+The brief for the next round is built on the winner's opening, described by what it does: a person speaking to camera inside the first two seconds, no music intro.
 
 ## Guardrails
 

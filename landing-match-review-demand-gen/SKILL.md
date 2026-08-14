@@ -50,11 +50,15 @@ Recommended additional data:
 
 Every threshold is a starting heuristic, not a Google rule. Recalibrate per account.
 
+Two numbers decide this, both expressed as the cold-traffic figure divided by the search figure on the same page: the **engagement ratio** and the **conversion ratio**. Read engagement first.
+
 | Verdict | Criteria |
 |---|---|
-| Page is fit for this traffic | Conversion rate at least roughly half the search rate on the same page [heuristic] and engagement comparable |
-| Ask is too heavy | Engagement comparable to search traffic but conversion rate under a quarter of it |
-| Wrong page | Engagement materially worse than search traffic, meaning people leave before considering the offer |
+| Wrong page | Engagement ratio under 0.7 [heuristic] — people leave before they consider the offer, so the conversion ratio is not informative |
+| Ask is too heavy | Engagement ratio 0.7 or above, conversion ratio under 0.25 |
+| Page is fit for this traffic | Engagement ratio 0.7 or above, conversion ratio 0.25 or above |
+
+**Minimum sample before any verdict: roughly 300 sessions from the cold source in the window [heuristic].** Below that, report the numbers and refuse the verdict. An earlier version of this table had no floor, and a page can be condemned on twenty sessions.
 
 Homepage rule: sending upper-funnel traffic to a homepage is a decision, not a default. Where it is happening, say what it costs rather than assuming it is wrong; some businesses genuinely need the breadth.
 
@@ -86,7 +90,7 @@ What could not be separated by source.
 
 ## Practical example
 
-Cold traffic converts at 0.3% where search converts at 2.6% on the same page, while engagement is nearly identical across both. The ad promises a free checklist and the page asks for a demo booking. Output: the ask is too heavy rather than the page being wrong, and the recommended move is to deliver the promised checklist on the page with the demo as a secondary step.
+Cold traffic converts at 0.3% where search converts at 2.6% on the same page, while engagement is nearly identical across both. The ad promises a free checklist and the page asks for a demo booking. Engagement ratio is 0.98 and the conversion ratio is 0.3 / 2.6 = 0.12, on 1,400 cold sessions, so the sample clears the floor and the verdict is **ask is too heavy** rather than wrong page. Output: and the recommended move is to deliver the promised checklist on the page with the demo as a secondary step.
 
 ## Guardrails
 

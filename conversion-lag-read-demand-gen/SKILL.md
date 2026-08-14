@@ -21,7 +21,7 @@ Common user requests:
 Minimum useful data:
 
 - The same campaign report pulled at least twice for an overlapping range, at different times.
-- If only one pull exists: 30+ days of daily data for the campaign.
+- **If only one pull exists, this cannot be measured at all.** A single export tells you what each past day looks like today; it can never tell you what that day looked like when it was fresh, which is the entire quantity. Say the waiting rule is unavailable, start taking a weekly snapshot now, and come back when the second pull exists. Do not substitute a historical daily series and present it as a curve.
 
 Recommended additional data:
 
@@ -31,7 +31,7 @@ Recommended additional data:
 
 ## Before analysis
 
-1. Ask whether two pulls exist. Without them the curve is estimated from history and must be labelled as such.
+1. Ask whether two pulls exist. Without them, stop and say so; there is no fallback that produces this number.
 2. Check whether the reported figure includes view-through credit. That fills on a different schedule and mixing them hides both.
 3. Confirm the conversion window. A long window cannot be final before it has elapsed.
 4. Ask how long the business's own cycle runs from first exposure to recorded outcome.
@@ -40,7 +40,7 @@ Recommended additional data:
 
 1. For each day in the overlap, compare the value at first pull against the later pull.
 2. Compute the share of the final figure visible after 1, 3, 7 and 14 days.
-3. Where possible, compute the curve separately for click-through and view-through, because they differ enough to change the waiting rule.
+3. Where possible, compute the curve separately for each credit type the account exposes: click-through, engaged-view and view-through. They fill on different schedules, and Demand Gen carries engaged-view credit inside the headline count, so a single blended curve hides the fastest and the slowest signal at once.
 4. Identify the day the curve flattens.
 5. Convert it into a waiting rule expressed in days.
 6. Re-read any decision taken inside the unfinished window and say whether it would still hold.
@@ -61,7 +61,7 @@ Launch rule: a new campaign is also inside its learning period, so early figures
 
 ## Output format
 
-### Waiting rule
+### Waiting rule (or: unavailable, when only one pull exists)
 
 The number of days after which figures are stable enough to act on.
 
@@ -81,7 +81,11 @@ Whether the curve is measured or estimated.
 
 ## Practical example
 
-Two pulls a week apart show 38% of the final figure visible at day one and 71% at day three, with view-through filling considerably later than click-through. A campaign cut on its second day at a cost per result of 61 would have settled near 32. Output: waiting rule of seven days, the cut flagged for reversal, and cost per engaged view proposed as the faster indicator.
+Two pulls a week apart show 38% of the final figure visible at day one and 71% at day three, with view-through filling considerably later than click-through.
+
+Verdict: **judge after 14 days**, not seven. 38% is below the 40% line, and the view-through clause points the same way, so both criteria in that row fire. An earlier draft of this example said seven days, which its own table forbids.
+
+A campaign cut on its second day at a cost per result of 61 would have settled near 32. The cut is flagged for reversal, and cost per engaged view is proposed as the leading indicator for calls that genuinely cannot wait fourteen days.
 
 ## Guardrails
 

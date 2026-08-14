@@ -85,7 +85,15 @@ Whether the split was measured or estimated, and what that costs in confidence.
 
 ## Practical example
 
-Campaign reports 88 conversions. The shop shows 61 new customers in the range against 44 in the equal window before launch, so 17 of the growth is attributable at cohort level at best. New-customer share of campaign conversions is 71%, cost per new customer is 2.4 times cost per conversion, and first-order value for new customers sits 18% below the account average. Output: doing its job on discovery, with a flag that the new cohort is buying cheaper and the second-order rate is the number to watch next.
+Campaign reports 88 conversions at a spend of 5,280, so cost per conversion is 60.
+
+The shop attributes 37 of those to customers with no prior order, giving a **new-customer share of 42%** and a cost per new customer of 5,280 / 37 = **143**, which is 2.4 times cost per conversion. That multiple is not a separate fact; it is 1 divided by the new-customer share, and stating both keeps the arithmetic checkable.
+
+Total new customers across all channels rose from 44 to 61 between equal windows, so 17 is the most the whole account can claim as growth, against this campaign alone claiming 37. That gap is the finding: the campaign is largely converting people other channels would also have reached.
+
+First-order value for the new cohort sits 18% below the account average.
+
+Verdict: **mixed** — 42% sits in the 30-60% band, and total customers rose while orders rose faster. Flag the cheaper first order and put the second-order rate on next month's list.
 
 ## Guardrails
 

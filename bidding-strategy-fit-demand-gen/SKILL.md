@@ -1,6 +1,6 @@
 ---
 name: bidding-strategy-fit-demand-gen
-description: Checks whether a campaign's bid strategy matches the conversion volume and signal quality it actually has, because a value or target strategy on thin data optimises toward noise. Use before changing bid strategy, when a campaign will not spend its budget, or when results swing week to week without a change.
+description: Checks whether a Google Ads Demand Gen campaign's bid strategy matches the conversion volume and signal quality it actually has, because a value or target strategy on thin data optimises toward noise. Use before changing bid strategy, when a campaign will not spend its budget, or when results swing week to week without a change.
 ---
 
 # Should This Bid To Clicks Or Conversions - Demand Gen
@@ -50,11 +50,15 @@ Recommended additional data:
 
 Every threshold is a starting heuristic, not a Google rule. Recalibrate per account.
 
+⚠️ **The volume figure people quote for this campaign type is per 30 days, not per week.** The commonly cited guidance for target CPA on Google's non-Search inventory is on the order of 50 conversions in the preceding 30 days, which is roughly 12 a week, not 50. An earlier version of this table used 50 per week and pushed almost every small account into clicks-only bidding, where the conversion signal never grows enough to leave. Treat the numbers below as a starting point and verify against current Google guidance for your campaign type.
+
 | Verdict | Criteria |
 |---|---|
-| Bid to conversions or value | 50+ conversions per week for the optimisation event [heuristic tied to learning], stable within roughly 30% week to week, and real varied values if bidding to value |
-| Bid to conversions without a target | 15-50 per week |
-| Bid to clicks for now | Under roughly 15 per week, OR conversion values are a repeated default |
+| Bid to conversions with a target, or to value | Roughly 50+ conversions in the trailing 30 days [heuristic], stable within roughly 30% week to week, and real varied values if bidding to value |
+| Bid to conversions without a target | Roughly 15-50 in the trailing 30 days |
+| Bid to clicks for now | Under roughly 15 in the trailing 30 days, OR conversion values are a repeated default |
+
+**The trap in the bottom row, which the earlier version walked straight into:** maximise clicks does not feed the conversion signal, so a campaign parked there does not accumulate its way up to the next band. Where you recommend clicks, also name what will move the account out of it — usually a shallower optimisation event with enough volume, or consolidating ad sets so one of them clears the floor.
 
 Target-realism rule: a target more than roughly 30% away from anything the campaign has achieved is not a target, it is a throttle. Say what the campaign has actually achieved and propose a target inside that range with a plan to tighten it.
 
@@ -85,7 +89,11 @@ The volume at which to change strategy, stated as a number.
 
 ## Practical example
 
-Campaign bids to target CPA at a target 45% below anything it has recorded, on 11 conversions a week, with the target edited three times in five weeks. Output: bid to clicks for now, the target named as a throttle rather than a goal, editing stopped for four weeks, and the move-up condition set at a sustained 15 conversions a week.
+Campaign bids to target CPA at a target 45% below anything it has recorded, on **41 conversions in the trailing 30 days**, with the target edited three times in five weeks.
+
+Verdict: **bid to conversions without a target**. 41 sits in the middle band, so the strategy itself is not the problem; the target is. It is named as a throttle rather than a goal and removed, editing is stopped for four weeks, and the move-up condition to a target is set at a sustained 50 in the trailing 30 days.
+
+Had the campaign been at 11 in thirty days rather than 41, the recommendation would be clicks — together with the named route out, because clicks alone would never get it back.
 
 ## Guardrails
 
