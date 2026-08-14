@@ -4,7 +4,7 @@ A pack of 15 production-ready Claude Skills for the Google Ads campaign type tha
 
 Each skill is a self-contained `SKILL.md` with explicit triggers, required inputs, an analysis workflow, decision rules with unit-carrying thresholds, a worked example, an output format and guardrails. **Every threshold is labelled as a heuristic to recalibrate per account, never as a published Google rule**, because most of the numbers people quote for this campaign type are working figures rather than documentation.
 
-Three of them refuse to answer under stated conditions rather than return something the data cannot carry. The lift skill will tell you your account cannot produce a readable holdout instead of designing a decorative one. The feed skill fails a whole feed on a single wrong price, because that defect damages trust with the customer rather than merely reducing reach. The money-split skill stops when the account cannot report the split at all, instead of inferring it from impression volume.
+Two of them refuse to answer under stated conditions rather than return something the data cannot carry. The lift skill will tell you your account cannot produce a readable holdout instead of designing a decorative one. The feed skill fails a whole feed on a single wrong price, because that defect damages trust with the customer rather than merely reducing reach. A third, the money-split skill, does something related: when the account cannot report the surface split it does not stop and does not guess either, it falls back to the read the account can support and says which of the two it ran.
 
 These skills read exports and hand back a decision. They do not need write access, they do not change campaigns, and they do not touch budgets.
 
@@ -39,7 +39,7 @@ These skills read exports and hand back a decision. They do not need write acces
 ```bash
 git clone https://github.com/mardab96/demand-gen-youtube-skills.git
 mkdir -p ~/.claude/skills
-cp -r demand-gen-youtube-skills/*-demand-gen ~/.claude/skills/
+cp -r demand-gen-youtube-skills/*-demand-gen demand-gen-youtube-skills/scripts ~/.claude/skills/
 ```
 
 ### Option B - Other Claude environments

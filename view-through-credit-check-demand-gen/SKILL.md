@@ -1,9 +1,26 @@
 ---
 name: view-through-credit-check-demand-gen
-description: Separates conversions that followed a click from conversions credited to someone who only saw the ad, so a Demand Gen result is not read as action when most of it is exposure. Use before scaling, when Demand Gen reports strong conversions the rest of the account cannot find, or when comparing Demand Gen against Search on the same report.
+description: Separates the three ways a Demand Gen conversion can be credited, click-through, engaged-view and view-through, so a result is not read as action when most of it is exposure. Use before scaling, when Demand Gen reports strong conversions the rest of the account cannot find, or when comparing Demand Gen against Search on the same report.
 ---
 
 # Did They Buy Or Did They Just Watch - Demand Gen
+
+## Three kinds of credit, not two
+
+Read this before anything else, because getting it wrong is the most common way this
+campaign type gets misjudged, and subtracting one column from another gives the wrong
+answer:
+
+| Credit type | What happened | Where it hides |
+|---|---|---|
+| Click-through | The person clicked the ad and converted | The base conversion count |
+| **Engaged-view** | The person watched roughly ten seconds or more, did not click, and converted within a few days | **Inside the headline conversion figure on Demand Gen and Video campaigns**, which is why the count looks large without matching traffic |
+| View-through | The person saw the ad, did not engage with it, and converted later | Usually a separate column, often excluded from the main count |
+
+Engaged-view credit is the one people miss, because it is neither a click nor a
+classic view-through, and on this campaign type it is frequently the largest of the
+three. A split that only asks "clicks versus view-through" will therefore report a
+click-through figure that is not click-through at all.
 
 ## Use this skill when
 
@@ -20,7 +37,7 @@ Common user requests:
 
 Minimum useful data:
 
-- Google Ads report with conversions split by click-through and view-through, or with the view-through conversion column present.
+- Google Ads report with the conversion columns split out.
 - Spend and the conversion action being counted.
 - Business-recorded conversions for the same closed range.
 
@@ -29,6 +46,14 @@ Recommended additional data:
 - The same split for Search or another click-driven campaign, as a contrast.
 - The conversion window in use.
 - Any concurrent brand activity that would raise baseline demand.
+
+## How to pull this
+
+1. In Google Ads, open the campaign report and use the column picker, not a default view.
+2. Under Conversions, add: `Conversions`, `All conv.`, `View-through conv.` and `Engaged-view conversions`. On many accounts the last two are not shown by default and their absence is the reason people think the split is unavailable.
+3. Set the date range to a closed period. Nothing here works on an open range.
+4. Export at campaign level, and repeat for one click-driven campaign in the same account as a contrast.
+5. **The trap:** `Conversions` and `All conv.` are different columns and on this campaign type the gap between them is routinely large. Note which one every figure in your analysis came from, and say so in the output. Subtracting the wrong pair produces a click-through figure that silently includes engaged-view credit.
 
 ## Before analysis
 
@@ -39,7 +64,7 @@ Recommended additional data:
 
 ## Analysis workflow
 
-1. Split reported conversions into click-through and view-through, as counts and as shares.
+1. Split reported conversions three ways: click-through, engaged-view and view-through, as counts and as shares. Where the account exposes only two of the three, say which one is missing and treat the remainder as unresolved rather than folding it into click-through.
 2. Recompute cost per conversion on click-through only, and state both numbers side by side.
 3. Compare Demand Gen's view-through share against a click-driven campaign in the same account, so the reader has a contrast rather than an absolute.
 4. Compare the click-through figure against business-recorded conversions for the range.
@@ -52,9 +77,9 @@ Every threshold is a starting heuristic, not a Google rule. Recalibrate per acco
 
 | Verdict | Criteria |
 |---|---|
-| Comparable to click campaigns | View-through under roughly 25% of reported conversions [heuristic] |
-| Report both numbers | View-through 25-60% |
-| Do not compare this to Search | View-through above 60%, OR click-through conversions below what the business can independently see |
+| Comparable to click campaigns | Click-through is at least roughly 75% of the reported total [heuristic], meaning engaged-view and view-through together are under a quarter |
+| Report both numbers | Click-through 40-75% of the reported total |
+| Do not compare this to Search | Click-through under 40% of the reported total, OR click-through conversions below what the business can independently see, OR the account cannot separate engaged-view credit at all |
 
 Comparison rule: never put a Demand Gen cost per conversion next to a Search cost per conversion without stating the view-through share of each. The two numbers answer different questions and the comparison is the single most common way this campaign type gets misjudged.
 

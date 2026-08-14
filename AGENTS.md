@@ -1,37 +1,64 @@
 # AGENTS.md: Demand Gen and YouTube diagnostic skills
 
-This repo is a pack of 10 Claude Code Skills for recurring Demand Gen and YouTube
-diagnostics run from exports. Each skill is a self-contained `SKILL.md` under
-its own folder, following the Agent Skills standard, so the pack also runs in
-any other Agent Skills tool.
+This repo is a pack of 15 Claude Skills for recurring Google Ads Demand Gen and
+YouTube diagnostics, run from exports. Each skill is a self-contained `SKILL.md`
+in its own directory.
 
-## How these skills behave
+## What these skills are for
 
-- **Data-first.** Every skill reads what you provide: Ads Manager exports,
-  breakdowns, Events Manager screenshots, comment exports. If the input is
-  missing, the skill says so and marks an assumption instead of guessing.
-- **Human-in-the-loop.** Skills diagnose and recommend. They do not log into
-  the ad account and they do not change campaigns, budgets or audiences.
-- **Honest about limits.** Every threshold inside a skill (frequency caps,
-  fatigue signals, health checks) is a labeled heuristic, not a rule Meta
-  published. Confidence is stated.
+Demand Gen spends across YouTube, Shorts, Discover and Gmail and reports one
+blended result. It counts views more than one way, and it credits conversions to
+people who never clicked. Most operator questions about this campaign type are
+therefore questions about the report rather than about the campaign, and that is
+what the pack answers first.
 
-## How the pack composes
+## How they behave
 
-- `account-health-check-demand-gen` is the entry point. It establishes the
-  overall state and routes to the right deep-dive skill.
-- Signal skills (`pixel-capi-signal-quality-audit-demand-gen`) come before
-  performance skills. Advantage+ and creative diagnosis on top of a broken
-  Pixel/CAPI setup produces confident, wrong answers.
-- Qualitative skills (`comment-objection-mining-demand-gen`,
-  `offer-angle-extraction-demand-gen`) feed the creative skills: mine the
-  objections first, then brief the next angle.
-- `weekly-performance-readout-demand-gen` is the recurring summary skill; run
-  it last.
+- **Read-only.** Nothing here logs into an account, changes a bid, pauses a
+  campaign or edits a feed. Every skill ends with a decision handed back to the
+  operator.
+- **Data-first.** Each skill states what it needs, and what it does when that
+  input is missing. Several refuse to produce a number the data cannot support
+  rather than estimating one.
+- **Thresholds are heuristics.** Every number carries a unit and is labelled as a
+  starting point to recalibrate per account, never as published Google guidance.
+- **One home per threshold.** A number lives in the owning skill's Decision rules.
+  Other skills, scripts and examples cite that home rather than restating the
+  value, so the pack does not drift apart on the next edit.
 
-## Verticals
+## Where to start
 
-Ecommerce accounts lean on creative fatigue, placement breakdowns and
-Advantage+ diagnosis; lead gen accounts lean on signal quality and the
-offer-angle skills, and should rank on CRM-verified lead value rather than
-the platform's reported cost per lead.
+`view-through-credit-check-demand-gen` needs the least setup and most often changes
+a decision: the conversion columns and the business's own order count for the same
+closed range.
+
+## How they compose
+
+Several skills deliberately hand off rather than duplicate:
+
+- `view-through-credit-check` and `campaign-overlap-check` both end by routing a
+  causation question to `incremental-lift-design`, which is the only skill that
+  designs a test.
+- `weekly-readout` and `bidding-strategy-fit` both defer the question of unfinished
+  days to `conversion-lag-read` instead of restating its curve.
+- `money-split-review` routes an asset-shape finding to `creative-coverage-audit`
+  rather than producing a production list itself.
+
+## Helpers
+
+`scripts/` holds two deterministic helpers for the arithmetic that should not be
+eyeballed. Each names the skill that owns its thresholds, and each owning skill
+names the script.
+
+- `lag_curve.py` — owned by `conversion-lag-read-demand-gen`
+- `baseline_spread.py` — owned by `incremental-lift-design-demand-gen`
+
+`examples/` holds two end-to-end runs with real inputs and real output.
+
+## If you are an agent editing this pack
+
+Change a threshold in exactly one place, then grep the bare number across every
+`SKILL.md`, script, example and the README, and reconcile every hit. Recompute each
+worked example against its own decision table afterwards. A worked example whose
+verdict does not follow from its own numbers is the defect this pack has already
+shipped once.
