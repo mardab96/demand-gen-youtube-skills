@@ -6,40 +6,50 @@
 
 ### Split
 
-| Measure | Click-through | View-through | Total |
-|---|---:|---:|---:|
-| Demand Gen conversions | 22 | 72 | 94 |
-| Share of total | 23% | **77%** | 100% |
-| Search Brand | 60 | 3 | 63 |
-| Search Generic | 39 | 2 | 41 |
+| Measure | Click-through | Engaged-view | View-through | Total credited |
+|---|---:|---:|---:|---:|
+| Demand Gen - Prospecting | **36** | 58 | 72 | 166 |
+| Share of total credited | **22%** | 35% | 43% | 100% |
+| Search - Brand | 63 | 0 | 3 | 66 |
+| Search - Generic | 41 | 0 | 2 | 43 |
 
-### Cost per conversion, both ways
+The arithmetic, which is the point of this example: `Conversions` on the Demand Gen
+row is 94 and already contains the 58 engaged-view conversions, so click-through is
+94 − 58 = **36**. View-through sits outside that column, so total credited is
+94 + 72 = **166**.
 
-| Campaign | As reported | Click-through only |
+**Subtracting view-through from `Conversions` would have given 22 and called it
+click-through.** That is wrong in both directions at once: it removes a quantity that
+was never in the 94, and it leaves the engaged-view credit inside. An earlier version
+of this example did exactly that, which is why the skill now states the two formulas
+before anything else.
+
+### Cost per conversion, three ways
+
+| Campaign | Per `Conversions` | Per click-through |
 |---|---:|---:|
-| Demand Gen - Prospecting | 44.47 | **190.00** |
-| Search - Brand | 14.44 | 15.17 |
-| Search - Generic | 66.83 | 70.26 |
+| Demand Gen - Prospecting | 44.47 | **116.11** |
+| Search - Brand | 14.44 | 14.44 |
+| Search - Generic | 66.83 | 66.83 |
 
 ### What to do next
 
-View-through is 77% of the Demand Gen total, which is above the skill's 60% line,
-so the campaign fails the comparability test outright. Its reported 44.47 cost per
-conversion sits between the two Search campaigns and reads like a mid-table
-performer. On click-through only it is 190.00, which is nearly three times the
-worst Search campaign.
+Click-through is 22% of total credited, below the skill's 40% line, so the campaign
+fails comparability outright. Its reported 44.47 sits between the two Search
+campaigns and reads like a mid-table performer. On click-through alone it is 116.11,
+nearly double the worst Search campaign.
 
-The platform sum across the three campaigns is 198 conversions against 129 orders
-in the shop, a ratio of 1.53. That is enough excess to account for most of the
-view-through credit on its own.
+The platform sum across the three campaigns is 198 against 129 orders in the shop for
+the same closed fortnight, a ratio of 1.53. That gap is large enough to be accounted
+for by the exposure credit on its own.
 
-Neither number proves the campaign is worthless. What they establish is that the
-reported figure cannot be placed next to a Search figure in the same table, which
-is what the account was doing. The recommendation is a holdout, not a pause, and
-that is `incremental-lift-design-demand-gen`.
+None of this proves the campaign is worthless. What it establishes is that the
+reported figure cannot sit in the same table as a Search figure, which is what the
+account was doing. The recommendation is a holdout, not a pause, and that is
+`incremental-lift-design-demand-gen`.
 
 ### Missing data
 
-The export does not separate new from returning customers, so the question of
-whether those 22 click-through conversions were people the account would have
-reached anyway is open. `new-customer-share-demand-gen` answers it from shop data.
+The export does not separate new from returning customers, so whether those 36
+click-through conversions were people the account would have reached anyway is still
+open. `new-customer-share-demand-gen` answers it from shop data.

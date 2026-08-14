@@ -18,16 +18,16 @@ Common user requests:
 
 ## When another skill owns the question
 
-Three skills in this pack are reached by the same sentence, so each says here which
-one owns it rather than leaving the reader to guess:
+Enter here when the question is **whether another campaign already had these people**.
 
-- **"Demand Gen reports conversions and revenue is flat."** Start here only if the
-  question is *how the conversions were credited*. If the question is *whether the
-  spend caused anything*, that is `incremental-lift-design-demand-gen`. If the
-  question is *whether another campaign already had those people*, that is
-  `campaign-overlap-check-demand-gen`.
-- This skill never designs a test. When its output points at causation, it names the
-  lift skill and stops.
+- If the question is *how the conversions were credited* — click, engaged view or
+  exposure — that is `view-through-credit-check-demand-gen`, and it should be run
+  first, because a large exposure share explains a platform-versus-business gap
+  without any overlap at all.
+- This skill sizes the suspicion and stops. **It never settles causation**, because
+  overlap cannot be proven from platform data. When the sum exceeds the business
+  total, it names the likely pairs and hands the settlement to
+  `incremental-lift-design-demand-gen`.
 
 ## Required input
 

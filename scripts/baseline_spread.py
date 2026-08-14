@@ -54,9 +54,14 @@ def main(path):
     print(f"Worst week deviation ...... {spread:.0%}")
 
     # Thresholds live in incremental-lift-design-demand-gen/SKILL.md, Decision rules.
-    if typical <= 0.25 and len(vals) >= 8:
+    # Bramkujemy na OBU: mediana odchylen mowi o typowym tygodniu, maksimum lapie
+    # serie z jednym tygodniem skrajnym. Sama mediana przepuszczala serie, w ktorej
+    # jeden tydzien odstaje o 300%, a to jest dokladnie ten szum, ktory zjada wynik
+    # holdoutu. Skill nazywa to "weekly outcome variation"; tutaj to znaczy: typowy
+    # tydzien pod progiem I zaden tydzien nie odstaje ponad dwukrotnie od niego.
+    if typical <= 0.25 and spread <= 0.60 and len(vals) >= 8:
         verdict, code = "READABLE - a holdout on this baseline can clear normal noise", 0
-    elif typical <= 0.50:
+    elif typical <= 0.50 and spread <= 1.00:
         verdict, code = "NEEDS A LONGER WINDOW - run more weeks, or expect an unreadable result", 1
     else:
         verdict, code = "DO NOT RUN YET - the week-to-week swing is larger than any effect you could detect", 1

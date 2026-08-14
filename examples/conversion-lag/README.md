@@ -28,6 +28,15 @@ The tight spread matters as much as the median. A curve that lands between 38% a
 swung between 20% and 80% would not be, and the skill says to report it as unstable
 rather than to average it into a rule.
 
-The view-through column fills on roughly the same curve here. That is not always
-true, and where it is not, the skill reports the two curves separately so a campaign
-is not judged on a blend of a fast signal and a slow one.
+The script now prints a second curve for view-through credit, and on this data it
+lands at 37% against 39% for the total, so both give the same fourteen-day rule. That
+is not always true. Where the two disagree, the skill takes the slower one, and the
+script says so in its output rather than leaving the reader to notice.
+
+⚠️ **One honest limitation of this sample, which applies to your own data too.** The
+early pull is described as "the Monday after the week closed", so for the first day
+of the week it is a seven-day-old reading and for the last day it is a one-day-old
+reading. A clean curve needs the first pull taken a *fixed* number of days after each
+day. The tight 38-45% spread across a sevenfold difference in age is the tell that
+this sample is illustrative rather than rigorous. Anchor your own pulls to a fixed
+offset.

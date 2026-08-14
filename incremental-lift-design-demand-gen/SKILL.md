@@ -18,16 +18,21 @@ Common user requests:
 
 ## When another skill owns the question
 
-Three skills in this pack are reached by the same sentence, so each says here which
-one owns it rather than leaving the reader to guess:
+This skill is the end of the line for causation. Two others route here rather than
+answer it themselves, and neither should be run instead of this one:
 
-- **"Demand Gen reports conversions and revenue is flat."** Start here only if the
-  question is *how the conversions were credited*. If the question is *whether the
-  spend caused anything*, that is `incremental-lift-design-demand-gen`. If the
-  question is *whether another campaign already had those people*, that is
-  `campaign-overlap-check-demand-gen`.
-- This skill never designs a test. When its output points at causation, it names the
-  lift skill and stops.
+- **"How was this credited?"** belongs to `view-through-credit-check-demand-gen`.
+  It splits the reported count three ways and stops. When its output points at
+  causation, it names this skill.
+- **"Did another campaign already have these people?"** belongs to
+  `campaign-overlap-check-demand-gen`. It sizes the suspicion from platform sums
+  against the business total and stops, because overlap cannot be settled from
+  platform data. It names this skill too.
+
+So arriving here means the question has already been narrowed to whether the spend
+caused anything. **This skill designs the test. It does not hand the question on.**
+Its only permitted refusal is to say the account's baseline is too noisy to produce
+a readable one, which is a verdict, not a handoff.
 
 ## Required input
 

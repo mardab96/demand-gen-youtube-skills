@@ -19,8 +19,23 @@ answer:
 
 Engaged-view credit is the one people miss, because it is neither a click nor a
 classic view-through, and on this campaign type it is frequently the largest of the
-three. A split that only asks "clicks versus view-through" will therefore report a
-click-through figure that is not click-through at all.
+three.
+
+🔴 **The arithmetic follows from where each one sits, and getting the direction wrong
+is worse than not splitting at all.** `Conversions` contains click-through **and**
+engaged-view. `View-through conv.` sits outside it, as its own additive column. So:
+
+```
+click-through  =  Conversions  −  Engaged-view conversions
+total credited =  Conversions  +  View-through conv.
+```
+
+**Subtracting view-through from `Conversions` removes a quantity that was never in
+there.** It returns `Conversions` unchanged and labels it click-through, which is the
+exact mistake this skill exists to prevent, and an earlier version of this file made
+it in its own worked example. If the account does not expose an engaged-view column,
+you cannot compute click-through: report `Conversions` as **click-through plus
+engaged-view, unresolved**, and say so.
 
 ## Use this skill when
 
@@ -90,9 +105,9 @@ Every threshold is a starting heuristic, not a Google rule. Recalibrate per acco
 
 | Verdict | Criteria |
 |---|---|
-| Comparable to click campaigns | Click-through is at least roughly 75% of the reported total [heuristic], meaning engaged-view and view-through together are under a quarter |
-| Report both numbers | Click-through 40-75% of the reported total |
-| Do not compare this to Search | Click-through under 40% of the reported total, OR click-through conversions below what the business can independently see, OR the account cannot separate engaged-view credit at all |
+| Comparable to click campaigns | Click-through is at least roughly 75% of **total credited** [heuristic], where total credited is `Conversions + View-through conv.` — state the denominator in the output, because the two candidate denominators differ by nearly a factor of two |
+| Report both numbers | Click-through 40-75% of total credited |
+| Do not compare this to Search | Click-through under 40% of total credited, OR click-through below what the business can independently see, OR **the account cannot separate engaged-view credit at all**, in which case click-through is unknown rather than low |
 
 Comparison rule: never put a Demand Gen cost per conversion next to a Search cost per conversion without stating the view-through share of each. The two numbers answer different questions and the comparison is the single most common way this campaign type gets misjudged.
 
@@ -106,8 +121,11 @@ Comparable, report both, or not comparable.
 
 ### Split
 
-| Measure | Click-through | View-through | Total |
-|---|---:|---:|---:|
+| Measure | Click-through | Engaged-view | View-through | Total credited |
+|---|---:|---:|---:|---:|
+
+State which column each figure came from. Where engaged-view is unavailable, put
+`unresolved` in the click-through cell rather than a number.
 
 ### Cost per conversion, both ways
 

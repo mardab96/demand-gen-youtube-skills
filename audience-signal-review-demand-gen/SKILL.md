@@ -50,11 +50,16 @@ Recommended additional data:
 
 Every threshold is a starting heuristic, not a Google rule. Recalibrate per account.
 
-| Verdict | Criteria |
-|---|---|
-| Signal is doing work | Segments differ in cost per result by more than roughly 25% [heuristic] and the leading one matches the described customer |
-| Signal is decorative | Segments within roughly 15% of each other, which usually means delivery ignored them |
-| Signal is misaimed | Leading segment does not match the described customer, OR every seed list is older than 90 days |
+**Read in this order and stop at the first that fires.** A stale seed and a flat spread routinely appear together, and an unordered table lets the reader pick the gentler answer.
+
+| Order | Verdict | Criteria |
+|---:|---|---|
+| 1 | Not enough to judge | Any segment under roughly 30 results in the window [heuristic], or the account reports no segment-level performance at all |
+| 2 | Signal is misaimed | Every seed list older than 90 days, OR the leading segment does not match the described customer |
+| 3 | Signal is decorative | Segments within 15% of each other on cost per result |
+| 4 | Signal is doing work | Spread above 25% and the leader matches the described customer |
+
+When the account exposes no segment-level performance this skill stops at row 1. It has no fallback read, unlike `money-split-review-demand-gen`, and inventing a verdict from the segment list alone would be exactly the thing this pack refuses elsewhere.
 
 Same-seed rule: segments built from one list are not independent tests. Read them together or the account will keep adding variations of the same idea.
 
@@ -85,7 +90,9 @@ What the account did not expose about delivery.
 
 ## Practical example
 
-Four segments, three of them lookalike variants built from the same 900-member purchaser list uploaded in April. Cost per result differs by 6% across all four. Output: signal is decorative, the three variants are one hypothesis, and the recommendation is a refreshed seed from the last 180 days of buyers plus an explicit decision about whether broad is acceptable while the seed rebuilds.
+Four segments, three of them lookalike variants built from the same 900-member purchaser list uploaded in April. Cost per result differs by 6% across all four. Read in order. Row 1 does not fire, the segments have volume. **Row 2 fires**: the only seed is four months old, past the 90-day line. Verdict: **signal is misaimed**, and rows 3 and 4 are never reached. An earlier draft called this decorative, which was the softer of two rows that both matched.
+
+The distinction is not cosmetic. Decorative means delivery ignored your signal; misaimed means it followed a signal pointing at last year's customer. Only the second is fixed by a new seed, which is what the recommendation says. The three variants are one hypothesis, and the recommendation is a refreshed seed from the last 180 days of buyers plus an explicit decision about whether broad is acceptable while the seed rebuilds.
 
 ## Guardrails
 

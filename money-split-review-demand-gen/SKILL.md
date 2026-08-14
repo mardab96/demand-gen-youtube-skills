@@ -57,13 +57,13 @@ Recommended additional data:
 
 Every threshold is a starting heuristic, not a Google rule. Recalibrate per account.
 
-Read one number: **the gap in percentage points between a surface's share of spend and its share of conversions.** Every band below is that gap, so the three are exhaustive and a campaign cannot fall between them.
+Read one number and one number only: **the gap in percentage points between a surface's share of spend and its share of conversions.** The three bands below partition that single number, so no campaign falls between them and none matches two. An earlier version added a second condition to the bottom row, which reintroduced exactly the ambiguity this table exists to remove.
 
 | Verdict | Criteria |
 |---|---|
 | Split is healthy | No surface with a spend-to-conversion gap above roughly 15 points [heuristic], whatever its share of spend |
 | Watch it | Largest gap 15-35 points |
-| Act on the split | Largest gap above 35 points, OR any surface above 30% of spend with a conversion share under 3% |
+| Act on the split | Largest gap above 35 points |
 
 `Conversions` and `All conv.` are different columns and on this campaign type the difference is routinely large. **State which column every figure came from.** Two people reading the same export with different columns will produce different verdicts, and neither will know why.
 

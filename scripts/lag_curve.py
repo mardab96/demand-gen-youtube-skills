@@ -17,12 +17,16 @@ Usage:
 Both files: a Google Ads daily export of the SAME closed date range, pulled at
 different times. Required columns (case-insensitive, extra columns ignored):
     date, conversions
-Optional, used when present to split the curve:
+Optional, reported as a second curve when present:
     view_through_conversions
 
-Exit code 0 always; this is a reporting tool, not a gate.
+Credit types fill on different schedules, so the skill asks for the curves
+separately. Where they diverge, the waiting rule follows the slower one.
+
+Exit code 0 on success, 2 when the inputs cannot produce a curve.
 """
 import csv
+import statistics
 import sys
 from collections import OrderedDict
 
@@ -47,6 +51,15 @@ def read(path):
     return rows
 
 
+def waiting_rule(median_share):
+    """Thresholds live in conversion-lag-read-demand-gen/SKILL.md, Decision rules."""
+    if median_share >= 0.70:
+        return "judge after 2-3 days"
+    if median_share >= 0.40:
+        return "judge after 7 days"
+    return "judge after 14 days"
+
+
 def main(early_path, late_path):
     early, late = read(early_path), read(late_path)
     shared = [d for d in late if d in early]
@@ -54,36 +67,54 @@ def main(early_path, late_path):
         print("STOP: the two files share no dates. Pull the same range twice.", file=sys.stderr)
         return 2
 
+    has_vt = any(v for _, v in list(early.values()) + list(late.values()))
+
     print(f"Overlapping days: {len(shared)}\n")
-    print(f"{'date':<12}{'early':>10}{'final':>10}{'visible':>10}")
-    ratios = []
+    header = f"{'date':<12}{'early':>10}{'final':>10}{'visible':>10}"
+    if has_vt:
+        header += f"{'vt visible':>12}"
+    print(header)
+
+    ratios, vt_ratios = [], []
     for d in shared:
-        e, _ = early[d]
-        l, _ = late[d]
+        e, e_vt = early[d]
+        l, l_vt = late[d]
         if l <= 0:
             continue
         share = e / l
         ratios.append(share)
-        print(f"{d:<12}{e:>10.1f}{l:>10.1f}{share:>9.0%}")
+        row = f"{d:<12}{e:>10.1f}{l:>10.1f}{share:>9.0%}"
+        if has_vt:
+            if l_vt > 0:
+                vt_share = e_vt / l_vt
+                vt_ratios.append(vt_share)
+                row += f"{vt_share:>11.0%}"
+            else:
+                row += f"{'-':>12}"
+        print(row)
 
     if not ratios:
         print("\nSTOP: no day had a final value above zero.", file=sys.stderr)
         return 2
 
-    ratios.sort()
-    median = ratios[len(ratios) // 2]
+    # statistics.median, never ratios[n // 2]: on an even number of days the latter
+    # returns the upper middle value, which OVERSTATES how much was visible on day
+    # one and therefore SHORTENS the waiting rule. That error runs in the direction
+    # of the premature pause this whole skill exists to prevent.
+    median = statistics.median(ratios)
     print(f"\nMedian share of the final value visible at first pull: {median:.0%}")
+    print(f"Waiting rule: {waiting_rule(median)}")
 
-    # Thresholds live in conversion-lag-read-demand-gen/SKILL.md, Decision rules.
-    if median >= 0.70:
-        rule = "judge after 2-3 days"
-    elif median >= 0.40:
-        rule = "judge after 7 days"
-    else:
-        rule = "judge after 14 days"
-    print(f"Waiting rule: {rule}")
+    if vt_ratios:
+        vt_median = statistics.median(vt_ratios)
+        print(f"\nView-through credit only, same measure: {vt_median:.0%}")
+        print(f"Waiting rule on that curve alone: {waiting_rule(vt_median)}")
+        if waiting_rule(vt_median) != waiting_rule(median):
+            print("The two curves disagree. Take the slower rule, per the skill.")
+
     print("\nThis is a measured curve only if the two pulls are days apart on a closed")
-    print("range. If they are not, label the result as an estimate, per the skill.")
+    print("range, and only if 'first pull' is a fixed number of days after each day.")
+    print("A single export cannot produce this number at all.")
     return 0
 
 

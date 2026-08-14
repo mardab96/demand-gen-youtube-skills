@@ -50,15 +50,21 @@ Recommended additional data:
 
 Every threshold is a starting heuristic, not a Google rule. Recalibrate per account.
 
-Every shape below carries a tolerance, because "stable" and "flat" without a number mean the verdict depends on who reads the chart. All comparisons are against the same metric four weeks earlier, on a series split at any budget change.
+**Run the tests in this order and stop at the first that fires.** Without an order, one series can match Healthy, auction pressure and fatigue at once, and the verdict becomes whichever row the reader looked at first.
 
-| Verdict | Criteria |
-|---|---|
-| Healthy | Frequency change under 15% [heuristic] and reach up at least 10% |
-| Saturation | Frequency up 25%+ while reach is within 10% or falling, sustained 3+ weeks |
-| Auction pressure | Cost per thousand impressions up 20%+ while frequency change stays under 15% |
-| Fatigue | Result rate per impression down 20%+ while both frequency and reach change under 15% |
-| Unresolved | Anything else, or fewer than six weeks after the last budget change |
+1. Unresolved (window test) → 2. Saturation → 3. Fatigue → 4. Auction pressure → 5. Healthy.
+
+Every shape carries a tolerance, because "stable" and "flat" without a number mean the verdict depends on who reads the chart. All comparisons are against the same metric four weeks earlier, on a series split at any budget change.
+
+| Order | Verdict | Criteria |
+|---:|---|---|
+| 1 | Unresolved | Fewer than six weeks of data after the last budget change. Nothing below is readable until this clears |
+| 2 | Saturation | Frequency up more than 25% [heuristic] while reach is within 10% or falling, sustained 3+ weeks |
+| 3 | Fatigue | Result rate per impression down more than 20% while both frequency and reach change by 15% or less |
+| 4 | Auction pressure | Cost per thousand impressions up more than 20% while frequency change is 15% or less |
+| 5 | Healthy | Frequency change 15% or less and reach up 10% or more |
+
+Every boundary uses "more than" or "or less" so a series sitting exactly on a number lands in one row, not two.
 
 The last row exists because these four shapes do not cover every series, and a rubric that pretends otherwise will label a mixed pattern as whichever shape it half resembles.
 
@@ -70,7 +76,7 @@ Audience-size rule: where the audience estimate is small relative to weekly reac
 
 ### Pattern verdict
 
-Healthy, saturation, auction pressure, or fatigue.
+Unresolved, saturation, fatigue, auction pressure, or healthy — named with the test number that fired.
 
 ### Weekly series
 
@@ -91,7 +97,11 @@ Whether reach was reported or inferred.
 
 ## Practical example
 
-Six weeks of data. Frequency moves 1.9 to 3.4 while weekly reach falls 12%, cost per thousand impressions is flat and result rate per impression is unchanged. Budget rose 40% in week two. Frequency is up 79%, reach is down 12% and it has held three weeks, so the saturation row fires cleanly while auction pressure and fatigue do not. Output: **saturation**, not fatigue, with the series split at the budget change so the first fortnight is excluded, and audience expansion recommended ahead of any new creative.
+Six weeks of data. Frequency moves 1.9 to 3.4 while weekly reach falls 12%, cost per thousand impressions is flat and result rate per impression is unchanged. Budget rose 40% in week two. Test 1 fires and stops everything else: six weeks total with the budget rising in week two leaves roughly four weeks after the change, and the window rule needs six. Verdict: **Unresolved**.
+
+The shape looks like saturation — frequency up 79%, reach down 12%, held three weeks — and an earlier draft of this example reported it as such. It is not available yet. Say what the shape suggests, say the window is too short to claim it, and name the date the series becomes readable. Two more weeks of stable budget settle it.
+
+Had the window cleared, the reading would have been with the series split at the budget change so the first fortnight is excluded, and audience expansion recommended ahead of any new creative.
 
 ## Guardrails
 

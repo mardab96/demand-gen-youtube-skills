@@ -90,7 +90,7 @@ What could not be separated by source.
 
 ## Practical example
 
-Cold traffic converts at 0.3% where search converts at 2.6% on the same page, while engagement is nearly identical across both. The ad promises a free checklist and the page asks for a demo booking. Engagement ratio is 0.98 and the conversion ratio is 0.3 / 2.6 = 0.12, on 1,400 cold sessions, so the sample clears the floor and the verdict is **ask is too heavy** rather than wrong page. Output: and the recommended move is to deliver the promised checklist on the page with the demo as a secondary step.
+Cold traffic converts at 0.3% where search converts at 2.6% on the same page, while engagement is nearly identical across both. The ad promises a free checklist and the page asks for a demo booking. Engagement ratio is 0.98 and the conversion ratio is 0.3 / 2.6 = 0.12, on 1,400 cold sessions, so the sample clears the floor and the verdict is **ask is too heavy** rather than wrong page. The recommended move is to deliver the promised checklist on the page itself, with the demo booking kept as a secondary step below it.
 
 ## Guardrails
 
