@@ -1,6 +1,6 @@
 ---
 name: money-split-review-demand-gen
-description: Breaks a Demand Gen campaign down by where the money actually went across YouTube in-feed, Shorts, Discover and Gmail, because the campaign reports one blended result for four very different surfaces. Use before scaling, when results move without a change, when a campaign looks fine and feels wrong, or when cheap impressions arrive in volume and nothing follows.
+description: Breaks a Google Ads Demand Gen campaign down by channel across YouTube, Shorts, Discover, Gmail and Display, because the campaign reports one blended result by default even though the channels can be reported and controlled separately. Use before scaling, when results move without a change, when a campaign looks fine and feels wrong, or when cheap impressions arrive in volume and nothing follows.
 ---
 
 # Where Your Money Actually Went - Demand Gen
@@ -39,9 +39,10 @@ Recommended additional data:
 
 ## Before analysis
 
-1. Confirm what the account can actually split. Demand Gen exposes less surface detail than Video campaigns do, so name the limit before analysing rather than after.
+1. Pull the channel-level report. Confirm which channels the campaign is set to use, and which of those actually took spend — a channel enabled and unused is a different finding from one disabled.
 2. Confirm the date range is closed.
-3. Note that surfaces are not separately biddable in Demand Gen. Anything you find turns into a creative or exclusion decision, not a bid decision.
+3. **Check the campaign's channel controls before anything else.** Demand Gen exposes channel selection — YouTube, Discover, Gmail and Display — so what you find here turns into a channel decision, a creative decision, or both. This is the lever, and it is in the campaign settings.
+   ⚠️ Confirmed present by the account owner on 2026-08-14. An earlier version of this skill was written on the assumption that no such control existed and that the split was usually unavailable; that assumption was wrong and shaped the whole file. If you are working in an account or market where the controls are not present, the fallback read below still applies, but treat it as the exception rather than the expected case.
 4. Check whether the campaign changed format mix in the range. That moves the split on its own.
 
 ## Analysis workflow
@@ -51,7 +52,7 @@ Recommended additional data:
 3. Compare share of spend against share of conversions. The gap is the finding.
 4. Check whether one surface carries most of the impressions but little of the outcome.
 5. Look at whether the format mix explains the split: a campaign with only vertical video will lean to Shorts by construction.
-6. Turn the read into one of three moves: change creative mix, apply an exclusion where the account allows it, or accept the split and say why.
+6. Turn the read into one of three moves: **turn a channel off in campaign settings**, change the creative mix so the campaign has somewhere else to spend, or accept the split and say why.
 
 ## Decision rules
 
@@ -67,9 +68,9 @@ Read one number and one number only: **the gap in percentage points between a su
 
 `Conversions` and `All conv.` are different columns and on this campaign type the difference is routinely large. **State which column every figure came from.** Two people reading the same export with different columns will produce different verdicts, and neither will know why.
 
-Format rule: before recommending an exclusion, check the creative mix. A split caused by having only one asset ratio is a creative problem wearing a targeting costume, and the exclusion will not fix it.
+Format rule: **before turning a channel off, check the creative mix.** A split caused by owning only one asset ratio is a creative problem wearing a targeting costume, and disabling a channel will not fix it — it will shrink delivery and leave the same asset gap. Where the campaign has no assets for the channels you would keep, production comes first and the channel decision waits.
 
-Reporting limit rule: where the account cannot split the surfaces at all, **do not stop, and do not infer the split either.** Switch to the read the account CAN support and say that is what you are doing: format mix against spend pattern, cost per thousand impressions against the account's other campaign types, and week-on-week movement in that figure. That answers the operator's real question, which is whether the money is going somewhere cheap and empty, without pretending to a placement report the platform never gave you. State plainly which of the two reads you ran.
+Fallback rule, for the accounts where the channel report is genuinely unavailable: **do not stop, and do not infer the split either.** Switch to the read the account can support — format mix against spend pattern, cost per thousand impressions against the account's other campaign types, and week-on-week movement in that figure — and say plainly which of the two reads you ran. This is now the exception, not the default; where the channel report exists, use it.
 
 ## Output format
 

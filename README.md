@@ -50,7 +50,9 @@ The skills are plain Markdown with YAML frontmatter. Paste the relevant `SKILL.m
 
 Bring exports, not screenshots. Most skills open by asking what the account can actually report, because this campaign type exposes less surface detail than Video campaigns do, and a skill that guesses at the split is worse than one that says it cannot see it.
 
-Start with `money-split-review-demand-gen` if you do not know where to begin. It is the one that most often changes what people think their campaign is doing.
+Start with `view-through-credit-check-demand-gen` if you do not know where to begin. It needs the least setup — the conversion columns and your own order count for a closed period — and it most often changes a decision that was about to be made.
+
+Go to `money-split-review-demand-gen` second. Demand Gen lets you report and control channels separately, so the split it produces turns straight into a setting you can change.
 
 ## What these are not
 
