@@ -30,6 +30,16 @@ Recommended additional data:
 - The same metrics for a comparable earlier period.
 - What the business considers a meaningful outcome.
 
+## How to pull this
+
+Interface labels move between Google Ads releases. Where a name below does not match what you see, the report is still the one described.
+
+1. Open the campaign report, then the asset or ad-level view, because a campaign average across assets of different lengths answers nothing.
+2. Add: `Impressions`, `Engaged views`, `Clicks` and `Cost`. Engaged views is frequently not in the default column set.
+3. Also capture each asset's length. It is not in most reports and you will need it to compare like with like.
+4. Set a closed date range.
+5. **The trap:** an engaged view is not a view, not a watch and not a completion, and the three are reported differently. Copying a number from a column whose name merely contains the word "view" will produce a ladder whose steps do not connect.
+
 ## Before analysis
 
 1. Write down what each counter actually counts in this account, because the definitions differ by campaign type and a mixed report is unreadable.
@@ -54,10 +64,10 @@ Every threshold is a starting heuristic, not a Google rule. Recalibrate per acco
 |---|---|
 | Attention is real | Engaged views at least roughly 10% of impressions [heuristic] **and** clicks at least 2% of engaged views |
 | Attention without action | Engaged views at least roughly 10% of impressions **and** clicks under 2% of engaged views |
-| Weak attention | Engaged views 5-10% of impressions, whatever the click rate |
+| Weak attention | Engaged views 5% up to but not including 10% of impressions, whatever the click rate |
 | Not attention | Engaged views under roughly 5% of impressions |
 
-These four bands are exhaustive and mutually exclusive on purpose. Read the engaged-view share first, then the click rate only if the first test cleared 10%. A rubric with a gap in it still produces a verdict, and that verdict is invented.
+These four bands are exhaustive and mutually exclusive on purpose, and the wording carries that: a share of exactly 10% clears the first test, a share of exactly 5% is weak attention. Read the engaged-view share first, then the click rate only if the first test reached 10%. A rubric with a gap in it still produces a verdict, and that verdict is invented.
 
 Asset-length rule: compare like with like. Where asset lengths differ by more than roughly double, report per asset and refuse the campaign average.
 
@@ -67,7 +77,9 @@ Awareness rule: a campaign genuinely bought for awareness is allowed to stop at 
 
 ### Attention verdict
 
-Real, attention without action, or not attention.
+One of the four in the table: real, attention without action, weak attention, or
+not attention. All four, because a three-way field cannot express the verdict
+this skill's own worked example reaches.
 
 ### The ladder
 

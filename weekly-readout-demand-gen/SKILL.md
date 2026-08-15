@@ -30,6 +30,15 @@ Recommended additional data:
 - The account's conversion lag, so unfinished days are handled correctly.
 - View-through share, if the campaign reports it.
 
+## How to pull this
+
+Interface labels move between Google Ads releases. Where a name below does not match what you see, the report is still the one described.
+
+1. Pull the campaign report for the closed week and for the week before it, so every number has a comparison.
+2. Add the columns the readout will quote, and note for each which column it came from.
+3. Pull the change history for the account over both weeks. A budget change, a bid change or a new asset explains most week-on-week movement, and a readout written without it will report a consequence as a discovery.
+4. **The trap:** the last few days of "this week" are still filling. If you have no measured lag for the account, say so in the readout rather than assuming a window — the direction of that error is the same every single week, so it compounds into a trend that is not there.
+
 ## Before analysis
 
 1. Apply the conversion lag before writing anything. A readout that treats the last three days as final will be wrong every week in the same direction.
@@ -45,6 +54,16 @@ Recommended additional data:
 4. For each hypothesis, name the evidence that would confirm or kill it, so next week has something to close.
 5. List decisions the human has to make, with what each one costs and by when.
 6. List what could not be answered this week and what would answer it.
+
+
+## When another skill owns the question
+
+- **"How long until these numbers are finished?"** That belongs to
+  `conversion-lag-read-demand-gen`, which is the only skill in this pack that
+  measures the fill curve, and the only one that owns the waiting-rule
+  thresholds. This skill consumes that answer and never restates the curve. If
+  you do not have a measured lag for the account, say so here rather than
+  assuming a window: a readout that guesses the window is wrong in the same direction every week.
 
 ## Decision rules
 

@@ -1,10 +1,19 @@
 # 15 Claude Skills for Demand Gen and YouTube
 
-A pack of 15 production-ready Claude Skills for the Google Ads campaign type that spends across YouTube, Shorts, Discover and Gmail and reports it as one number. They cover where the money actually went, whether the views were attention, how much of the conversion count is exposure rather than action, creative coverage and winners, whether it found new customers, audience signal, overlap with your other campaigns, feed readiness, frequency, bid strategy fit, conversion lag, incrementality, landing page fit, and the weekly readout.
+A pack of 15 production-ready Claude Skills for the Google Ads campaign type that spends across YouTube, Discover, Gmail and Display and reports it as one number by default. They cover where the money actually went, whether the views were attention, how much of the conversion count is exposure rather than action, creative coverage and winners, whether it found new customers, audience signal, overlap with your other campaigns, feed readiness, frequency, bid strategy fit, conversion lag, incrementality, landing page fit, and the weekly readout.
 
 Each skill is a self-contained `SKILL.md` with explicit triggers, required inputs, an analysis workflow, decision rules with unit-carrying thresholds, a worked example, an output format and guardrails. **Every threshold is labelled as a heuristic to recalibrate per account, never as a published Google rule**, because most of the numbers people quote for this campaign type are working figures rather than documentation.
 
-Two of them refuse to answer under stated conditions rather than return something the data cannot carry. The lift skill will tell you your account cannot produce a readable holdout instead of designing a decorative one. The feed skill fails a whole feed on a single wrong price, because that defect damages trust with the customer rather than merely reducing reach. A third, the money-split skill, does something related: when the account cannot report the surface split it does not stop and does not guess either, it falls back to the read the account can support and says which of the two it ran.
+Four of them refuse to answer under stated conditions rather than return something the data cannot carry:
+
+- the **lift** skill tells you your account cannot produce a readable holdout instead of designing a decorative one;
+- the **feed** skill fails a whole feed on a single wrong price, because that defect damages trust with the customer rather than merely reducing reach;
+- the **conversion lag** skill refuses outright on a single export, because one pull cannot show how a figure filled;
+- the **audience signal** skill stops when segment-level performance is unavailable, with no fallback read.
+
+A fifth, the **money-split** skill, does something related rather than refusing: when the account cannot report the channel split it does not stop and does not guess either, it falls back to the read the account can support and says which of the two it ran.
+
+Shorts is deliberately absent from that channel list. It is YouTube inventory, not a separately selectable or separately reported channel, and a pack that lists it sends readers looking for a toggle and a row that do not exist.
 
 These skills read exports and hand back a decision. They do not need write access, they do not change campaigns, and they do not touch budgets.
 
@@ -48,7 +57,7 @@ The skills are plain Markdown with YAML frontmatter. Paste the relevant `SKILL.m
 
 ## How to use
 
-Bring exports, not screenshots. Most skills open by asking what the account can actually report, because this campaign type exposes less surface detail than Video campaigns do, and a skill that guesses at the split is worse than one that says it cannot see it.
+Bring exports, not screenshots. Most skills open by asking what the account can actually report, because a skill that guesses at a number it cannot see is worse than one that says it cannot see it. On the channel split specifically that caution is now milder than it once was: the campaign reports one blended result by default, but the channel breakdown and the channel controls both exist, so this is a question of going to look rather than a question of guessing.
 
 Start with `view-through-credit-check-demand-gen` if you do not know where to begin. It needs the least setup — the conversion columns and your own order count for a closed period — and it most often changes a decision that was about to be made.
 

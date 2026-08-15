@@ -1,7 +1,14 @@
 # Worked examples
 
-Two end-to-end runs with real inputs and the real output, so you can see what these
-skills hand back before you install anything.
+Two end-to-end runs with real inputs, so you can see what these skills hand back
+before you install anything.
+
+They are not the same kind of artefact, and the difference matters if you are
+checking our work. `conversion-lag/output.txt` is program output: run the command
+in that folder and you get that file back, byte for byte. `view-through-credit/`
+is a worked read, written out the way the skill's output format asks for it,
+because that skill has no script - its whole job is getting one subtraction the
+right way round.
 
 - **`conversion-lag/`** — two pulls of the same week, five days apart, run through
   `scripts/lag_curve.py`. Produces the waiting rule for the account.

@@ -48,6 +48,15 @@ Recommended additional data:
 - Any past period when this campaign was off.
 - Promotional and seasonal calendar.
 
+## How to pull this
+
+Interface labels move between Google Ads releases. Where a name below does not match what you see, the report is still the one described.
+
+1. The input here is a business outcome, not a platform report. Pull weekly revenue, orders or leads from the shop or CRM for at least the last twelve weeks.
+2. One row per week, two columns: `week` and `value`. That is exactly what `../scripts/baseline_spread.py` reads.
+3. Mark every week that contained a promotion, a price change, a stockout or a seasonal peak.
+4. **The trap:** never use platform-reported conversions as the baseline. A test built to measure whether the platform's numbers are real cannot be judged against the platform's numbers.
+
 ## Before analysis
 
 1. Establish the baseline: what a week looks like with none of this spend. Without such a period, the test has to create one.
@@ -70,11 +79,21 @@ Recommended additional data:
 
 Every threshold is a starting heuristic, not a Google rule. Recalibrate per account.
 
+Two measures of variation, not one, and both are gated. **Typical variation** is
+the median week's distance from the median week. **Worst-week variation** is the
+single furthest week's distance from it. A history can be calm on the first and
+still be unusable because of the second, and that is the case a single measure
+misses. `scripts/baseline_spread.py` prints both and implements exactly the
+bands below.
+
+Read the table top to bottom and stop at the first row that matches. Bands are
+written so that no value can satisfy two rows.
+
 | Verdict | Criteria |
 |---|---|
-| Test is readable | Weekly outcome variation under roughly 25% of its median [heuristic], 8+ weeks of history, no promotion in the window |
-| Needs a longer window | Variation 25-50%, or fewer than 8 weeks of history |
-| Do not run it yet | Variation above 50%, OR a promotion inside the window, OR outcomes cannot be read at the split level |
+| Do not run it yet | A promotion or seasonal peak inside the window, OR outcomes cannot be read at the split level, OR typical variation above 50% [heuristic], OR worst-week variation above 100% |
+| Needs a longer window | Fewer than 8 weeks of history, OR typical variation above 25% (up to and including 50%), OR worst-week variation above 60% (up to and including 100%) |
+| Test is readable | Everything else: 8+ weeks, typical variation 25% or under, worst week 60% or under, no promotion in the window |
 
 Size rule: a holdout too small returns a result that cannot clear noise, which reads as "no effect" and gets quoted as proof of one. Where the baseline cannot support a readable holdout, say the test is unavailable rather than running a decorative one.
 

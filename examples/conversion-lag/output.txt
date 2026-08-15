@@ -1,20 +1,31 @@
-Overlapping days: 7
+Early pull taken 2026-07-13. Overlapping days: 7, ages 1 to 7 days.
 
-date             early     final   visible  vt visible
-2026-07-06        14.0      31.0      45%        41%
-2026-07-07        11.0      27.0      41%        37%
-2026-07-08         9.0      24.0      38%        35%
-2026-07-09        12.0      29.0      41%        38%
-2026-07-10         8.0      21.0      38%        33%
-2026-07-11         6.0      16.0      38%        36%
-2026-07-12         7.0      18.0      39%        38%
+  age date               early     final   visible view-through vis
+   1d 2026-07-12          7.0      18.0      39%             38%
+   2d 2026-07-11          6.0      16.0      38%             36%
+   3d 2026-07-10          8.0      21.0      38%             33%
+   4d 2026-07-09         12.0      29.0      41%             38%
+   5d 2026-07-08          9.0      24.0      38%             35%
+   6d 2026-07-07         11.0      27.0      41%             37%
+   7d 2026-07-06         14.0      31.0      45%             41%
 
-Median share of the final value visible at first pull: 39%
+Fill curve (share of the final figure visible, by age at first sight)
+  days after   conversions     view-through
+          1d           39%              38%
+          2d           38%              36%
+          3d           38%              33%
+          4d           41%              38%
+          5d           38%              35%
+          6d           41%              37%
+          7d           45%              41%
+
+Share visible at 1 day(s) old: 39%
+Curve flattens at: 1 day old
 Waiting rule: judge after 14 days
 
-View-through credit only, same measure: 37%
+View-through credit only: 38% visible at 1 day(s) old
 Waiting rule on that curve alone: judge after 14 days
 
-This is a measured curve only if the two pulls are days apart on a closed
-range, and only if 'first pull' is a fixed number of days after each day.
+This is a measured curve only if both files cover the same closed range
+and --as-of is genuinely the date the early file was pulled.
 A single export cannot produce this number at all.

@@ -30,6 +30,15 @@ Recommended additional data:
 - First-order value against repeat-order value.
 - Whether the account uses a new-customer acquisition goal or customer lists for exclusion.
 
+## How to pull this
+
+Interface labels move between Google Ads releases. Where a name below does not match what you see, the report is still the one described.
+
+1. This one needs two sources and the business one is authoritative. Pull the campaign report for spend and conversions over a closed range.
+2. From the shop or CRM, pull orders in the same range split into first-time and repeat buyers, by the business's own definition of a customer.
+3. Where the platform reports a new-customer figure of its own, capture it as a second opinion, not as the answer.
+4. **The trap:** a platform's idea of a new customer depends on a list you uploaded and a window you may not have set. If nobody remembers configuring it, the figure is describing that configuration rather than your customer base.
+
 ## Before analysis
 
 1. Establish what the business counts as a new customer: first order ever, or first order in a window. The two produce very different numbers and both are defensible.

@@ -25,18 +25,40 @@ import sys
 
 
 def main(path):
-    vals, weeks = [], []
+    vals, unreadable = [], 0
     with open(path, newline="", encoding="utf-8-sig") as fh:
-        for r in csv.DictReader(fh):
-            key = {k.strip().lower(): (v or "").strip() for k, v in r.items()}
+        reader = csv.DictReader(fh)
+        headers = reader.fieldnames or []
+        lowered = {h.strip().lower(): h for h in headers}
+
+        # A missing column and an empty account are different failures and must not
+        # produce the same message. An earlier version reported a misnamed header as
+        # "only 0 usable weeks", which sent the operator off to collect more history
+        # they already had.
+        if "value" not in lowered:
+            print(
+                "STOP: no column named 'value' in this file.\n"
+                f"Columns seen: {', '.join(headers) if headers else '(none)'}\n"
+                "'value' is the business outcome the test will read: revenue, orders or "
+                "leads. Rename the column and run again. This is a header problem, not "
+                "a short history.",
+                file=sys.stderr,
+            )
+            return 1
+
+        for r in reader:
+            raw = (r.get(lowered["value"]) or "").strip().replace(",", "")
             try:
-                vals.append(float(key["value"]))
-                weeks.append(key.get("week", ""))
-            except (KeyError, ValueError):
-                continue
+                vals.append(float(raw))
+            except ValueError:
+                unreadable += 1
+
+    if unreadable:
+        print(f"Note: {unreadable} row(s) had an unreadable value and were skipped.\n")
 
     if len(vals) < 4:
-        print(f"STOP: only {len(vals)} usable weeks. Need at least 4 to say anything.", file=sys.stderr)
+        print(f"STOP: the 'value' column parsed on only {len(vals)} week(s). "
+              "Need at least 4 to say anything.", file=sys.stderr)
         return 1
 
     med = statistics.median(vals)
@@ -53,12 +75,12 @@ def main(path):
     print(f"Typical deviation ......... {typical:.0%}")
     print(f"Worst week deviation ...... {spread:.0%}")
 
-    # Thresholds live in incremental-lift-design-demand-gen/SKILL.md, Decision rules.
-    # Bramkujemy na OBU: mediana odchylen mowi o typowym tygodniu, maksimum lapie
-    # serie z jednym tygodniem skrajnym. Sama mediana przepuszczala serie, w ktorej
-    # jeden tydzien odstaje o 300%, a to jest dokladnie ten szum, ktory zjada wynik
-    # holdoutu. Skill nazywa to "weekly outcome variation"; tutaj to znaczy: typowy
-    # tydzien pod progiem I zaden tydzien nie odstaje ponad dwukrotnie od niego.
+    # Thresholds live in incremental-lift-design-demand-gen/SKILL.md, Decision rules,
+    # which states both of them. This file implements them and defines neither.
+    # Both are gated because they catch different failures: the median deviation
+    # describes a typical week, the maximum catches a series that is calm apart
+    # from one extreme week. The median alone passed a history in which a single
+    # week sat 300% off, and that is precisely the noise that eats a holdout result.
     if typical <= 0.25 and spread <= 0.60 and len(vals) >= 8:
         verdict, code = "READABLE - a holdout on this baseline can clear normal noise", 0
     elif typical <= 0.50 and spread <= 1.00:

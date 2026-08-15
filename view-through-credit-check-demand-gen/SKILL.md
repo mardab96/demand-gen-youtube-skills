@@ -141,7 +141,16 @@ Whether the account exposed the split at all.
 
 ## Practical example
 
-Demand Gen reports 94 conversions at 21 cost per conversion. The split shows 22 click-through and 72 view-through. Search in the same account runs at 4% view-through. Business orders are flat week on week. Output: not comparable to Search, click-through cost per conversion is 90, and the recommendation is a lift test rather than a scale or a pause.
+Demand Gen reports 94 in `Conversions` at 21 cost per conversion, so spend on the range is 1,974. `View-through conv.` shows 72 in its own column. The engaged-view segment splits the 94 into 58 engaged-view and 36 click-through.
+
+Work it in this order, because the direction is the whole point:
+
+- click-through = `Conversions` minus engaged-view = 94 - 58 = **36**. It is never `Conversions` minus view-through, because view-through was never inside `Conversions` to begin with. Subtracting it removes something that was never in the total and hands back a click-through figure that is too small by exactly the engaged-view count.
+- total credited = `Conversions` plus `View-through conv.` = 94 + 72 = **166**
+- click-through share = 36 / 166 = **22%**, which is under the 40% line
+- click-through cost per conversion = 1,974 / 36 = **54.83**, against the 21 the platform reports
+
+Search in the same account runs at 4% view-through. Business orders are flat week on week. Output: not comparable to Search, plan on 54.83 rather than 21, and the recommendation is a lift test rather than a scale or a pause.
 
 ## Guardrails
 

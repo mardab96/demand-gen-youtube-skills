@@ -30,6 +30,15 @@ Recommended additional data:
 - Mobile load time.
 - Whether the page asks for a form, a purchase or something lighter.
 
+## How to pull this
+
+Interface labels move between Google Ads releases. Where a name below does not match what you see, the report is still the one described.
+
+1. From Google Ads, pull the landing page report for the campaign: final URLs, `Clicks` and `Cost`.
+2. From analytics, pull sessions for those same URLs over the identical range, split by source where you can.
+3. Load the top landing pages yourself, on a phone, on a normal connection.
+4. **The trap:** clicks and sessions are counted by two different systems with two different definitions, and they will never match exactly. A gap is only a finding when it is large; treating a normal 10-20% difference as a defect will send you chasing a tracking bug that does not exist.
+
 ## Before analysis
 
 1. Open the destination page yourself, on mobile width, and read what it asks the visitor to do.

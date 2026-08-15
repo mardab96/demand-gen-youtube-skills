@@ -43,6 +43,15 @@ Recommended additional data:
 - Branded versus non-branded split on Search.
 - Any audience exclusions between campaigns.
 
+## How to pull this
+
+Interface labels move between Google Ads releases. Where a name below does not match what you see, the report is still the one described.
+
+1. Pull the campaign report for **every** campaign in the account, not just the Demand Gen one, over the same closed range.
+2. Add: `Cost`, `Conversions` and `Conv. value`, and note which conversion actions are included in the `Conversions` column.
+3. From the business side, pull the total orders or leads for the identical range.
+4. **The trap:** conversions are not de-duplicated across campaigns for you. Two campaigns can each claim the same order and both are reporting correctly. That is the entire phenomenon this skill measures, so do not "fix" it by picking one campaign's number.
+
 ## Before analysis
 
 1. Establish the account timeline: when each campaign launched, so before-and-after is available at all.
@@ -65,9 +74,13 @@ Every threshold is a starting heuristic, not a Google rule. Recalibrate per acco
 
 | Verdict | Criteria |
 |---|---|
-| No visible double counting | Platform sum within roughly 1.15x the business total [heuristic] |
-| Suspected overlap | Platform sum 1.15-1.6x the business total, OR the newest campaign's claimed conversions exceed the rise in business total |
-| Overlap is the working assumption | Platform sum above 1.6x business total, OR business total flat while a campaign claims material volume |
+Read top to bottom and stop at the first row that matches.
+
+| Order | Verdict | Criteria |
+|---:|---|---|
+| 1 | Overlap is the working assumption | Platform sum above 1.6x the business total [heuristic], OR business total flat while a campaign claims material volume |
+| 2 | Suspected overlap | Platform sum above 1.15x, up to and including 1.6x the business total, OR the newest campaign's claimed conversions exceed the rise in business total |
+| 3 | No visible double counting | Platform sum 1.15x the business total or below |
 
 Launch-window rule: compare equal-length windows either side of the launch and say what else changed. A promotion or a seasonal shift in that window makes the comparison unusable, and saying so is the correct output.
 

@@ -30,6 +30,15 @@ Recommended additional data:
 - Any budget or targeting change with its date.
 - Competitor or seasonal context the business knows about.
 
+## How to pull this
+
+Interface labels move between Google Ads releases. Where a name below does not match what you see, the report is still the one described.
+
+1. Open the campaign report and segment by week, over at least eight weeks.
+2. Add: `Impressions`, the reach or unique-users column, the average impressions per user column, and `Avg. CPM`.
+3. Note every budget change and its date. Change history is a separate view and you will need it.
+4. **The trap:** reach and unique users do not sum across weeks, because the same person appears in several of them. If you build a total by adding the weekly column you will invent a number larger than your audience.
+
 ## Before analysis
 
 1. Confirm the account reports reach or unique users. Without it, frequency is inferred and must be labelled as inferred.
@@ -62,7 +71,12 @@ Every shape carries a tolerance, because "stable" and "flat" without a number me
 | 2 | Saturation | Frequency up more than 25% [heuristic] while reach is within 10% or falling, sustained 3+ weeks |
 | 3 | Fatigue | Result rate per impression down more than 20% while both frequency and reach change by 15% or less |
 | 4 | Auction pressure | Cost per thousand impressions up more than 20% while frequency change is 15% or less |
-| 5 | Healthy | Frequency change 15% or less and reach up 10% or more |
+| 5 | Healthy or unremarkable | Everything that reaches this row. Nothing above fired, so no shape is present. Say which of the four you ruled out and on what numbers, rather than reporting a clean bill of health as if it were a finding |
+
+Row 5 is a catch-all by construction, and it has to be. An earlier version made
+it conditional on reach rising 10% or more, which left a genuinely calm campaign
+- frequency up 3%, reach up 1%, cost per thousand flat - matching no row at all
+and returning no verdict.
 
 Every boundary uses "more than" or "or less" so a series sitting exactly on a number lands in one row, not two.
 

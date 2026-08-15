@@ -1,13 +1,15 @@
 ---
 name: money-split-review-demand-gen
-description: Breaks a Google Ads Demand Gen campaign down by channel across YouTube, Shorts, Discover, Gmail and Display, because the campaign reports one blended result by default even though the channels can be reported and controlled separately. Use before scaling, when results move without a change, when a campaign looks fine and feels wrong, or when cheap impressions arrive in volume and nothing follows.
+description: Breaks a Google Ads Demand Gen campaign down by channel across YouTube, Discover, Gmail and Display, because the campaign reports one blended result by default even though the channels can be reported and controlled separately. Use before scaling, when results move without a change, when a campaign looks fine and feels wrong, or when cheap impressions arrive in volume and nothing follows.
 ---
 
 # Where Your Money Actually Went - Demand Gen
 
 ## Use this skill when
 
-One campaign spent across four surfaces and reported a single number.
+One campaign spent across four channels - YouTube, Discover, Gmail and Display - and reported a single number.
+
+Shorts is YouTube inventory rather than a fifth channel, so it does not appear as its own row or its own switch. Where this file says short-form, it means the vertical inventory inside YouTube.
 
 Common user requests:
 
@@ -37,6 +39,16 @@ Recommended additional data:
 - Conversion value per surface if the account tracks it.
 - Any channel exclusions already applied.
 
+## How to pull this
+
+Interface labels move between Google Ads releases. Where a name below does not match what you see, the report is still the one described.
+
+1. Open the campaign, then the channel or placement breakdown for it. Interface labels for this view move between releases; you are looking for the report that lists YouTube, Discover, Gmail and Display as separate rows rather than one campaign total.
+2. Add, at minimum: `Cost`, `Impressions`, `Clicks`, `Conversions` and `Conv. value`. Without cost and conversions on the same rows there is no gap to measure.
+3. Set a closed date range with no format-mix change inside it. A campaign that gained a new asset shape mid-range will show a split that describes the change, not the campaign.
+4. Separately, open the campaign settings and note which channels are switched on. An enabled channel taking no spend and a disabled channel look identical in a report that only lists what spent.
+5. **The trap:** Shorts is not a row here, because it is YouTube inventory rather than its own channel. If you are hunting for a Shorts line you will conclude the report is broken when it is not.
+
 ## Before analysis
 
 1. Pull the channel-level report. Confirm which channels the campaign is set to use, and which of those actually took spend — a channel enabled and unused is a different finding from one disabled.
@@ -51,7 +63,7 @@ Recommended additional data:
 2. Compute cost per result and click-through rate per surface, not just share of spend.
 3. Compare share of spend against share of conversions. The gap is the finding.
 4. Check whether one surface carries most of the impressions but little of the outcome.
-5. Look at whether the format mix explains the split: a campaign with only vertical video will lean to Shorts by construction.
+5. Look at whether the format mix explains the split: a campaign with only vertical video will lean to short-form YouTube inventory by construction.
 6. Turn the read into one of three moves: **turn a channel off in campaign settings**, change the creative mix so the campaign has somewhere else to spend, or accept the split and say why.
 
 ## Decision rules
@@ -62,9 +74,14 @@ Read one number and one number only: **the gap in percentage points between a su
 
 | Verdict | Criteria |
 |---|---|
-| Split is healthy | No surface with a spend-to-conversion gap above roughly 15 points [heuristic], whatever its share of spend |
-| Watch it | Largest gap 15-35 points |
+| Split is healthy | Largest gap 15 points or below [heuristic], whatever the channel's share of spend |
+| Watch it | Largest gap above 15 points, up to and including 35 |
 | Act on the split | Largest gap above 35 points |
+
+A gap of exactly 15 points is healthy and exactly 35 is watch it. The earlier
+wording said "above 15" in one row and "15-35" in the next, which put both
+endpoints in two rows at once - in a table whose own opening sentence claims it
+partitions the number.
 
 `Conversions` and `All conv.` are different columns and on this campaign type the difference is routinely large. **State which column every figure came from.** Two people reading the same export with different columns will produce different verdicts, and neither will know why.
 

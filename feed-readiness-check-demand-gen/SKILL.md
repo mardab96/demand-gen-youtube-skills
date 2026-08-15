@@ -30,6 +30,15 @@ Recommended additional data:
 - Image availability and size per item.
 - Which products the business actually wants promoted.
 
+## How to pull this
+
+Interface labels move between Google Ads releases. Where a name below does not match what you see, the report is still the one described.
+
+1. This one is not in Google Ads. Open Merchant Center and go to the products and diagnostics views.
+2. Capture: total products submitted, how many are active, and every disapproval reason with its item count.
+3. Spot-check at least ten items against the live shop page: price, availability, title and identifier. Ten is a floor, not a target.
+4. **The trap:** active, approved, eligible and eligible-for-this-campaign are four different states and the summary number blends them. A feed that reports healthy at the top can still have most of its catalogue ineligible for the surface you are buying.
+
 ## Before analysis
 
 1. Compare item count in the feed with the count the business believes it has. A gap here explains most narrow-delivery complaints before any field is examined.
@@ -52,9 +61,14 @@ Every threshold is a starting heuristic, not a Google rule. Recalibrate per acco
 
 | Verdict | Criteria |
 |---|---|
-| Feed is ready | 90%+ of intended products active [heuristic], required fields present on all sampled rows, price and availability match the shop on spot checks |
-| Fix before scaling | 70-90% active, OR one disapproval reason blocking more than 10% of items |
-| Not ready | Under 70% active, OR price or availability wrong on any spot check, OR identifiers missing |
+Read top to bottom and stop at the first row that matches, so a feed that is both
+under-populated and mispriced is reported by its worse problem.
+
+| Order | Verdict | Criteria |
+|---:|---|---|
+| 1 | Not ready | Under 70% of intended products active [heuristic], OR price or availability wrong on any spot check, OR identifiers missing |
+| 2 | Fix before scaling | 70% up to but not including 90% active, OR one disapproval reason blocking more than 10% of items |
+| 3 | Feed is ready | 90% or more active, required fields present on all sampled rows, price and availability matching the shop on every spot check |
 
 Price rule: a single wrong price in a spot check fails the whole feed. It is the one defect that damages trust with the customer rather than merely reducing reach.
 

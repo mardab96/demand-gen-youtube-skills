@@ -7,15 +7,20 @@ closed. `pull_late.csv` is the same seven days re-pulled the following Saturday.
 Run it:
 
 ```bash
-python3 ../../scripts/lag_curve.py pull_early.csv pull_late.csv
+python3 ../../scripts/lag_curve.py pull_early.csv pull_late.csv --as-of 2026-07-13
 ```
 
 `output.txt` is the real output of that command on these files, not a transcription.
 
+`--as-of` is not optional. It is what turns seven rows into a curve by age
+instead of an average across ages, and the average is biased upward because the
+older days had longer to fill.
+
 ## What the skill does with this
 
-The median share of the eventual figure visible at the first pull is **39%**, and
-the daily spread is tight, 38% to 45%. That sits below the skill's 40% line, so the
+The early file was pulled on Monday 2026-07-13, so the week's last day was one
+day old and its first day was seven days old when first seen. The share visible
+at one day old is **39%**, and the curve is tight across every age, 38% to 45%. That sits below the skill's 40% line, so the
 waiting rule is **14 days**, not seven.
 
 The operational consequence is the point of the whole skill. A campaign judged on

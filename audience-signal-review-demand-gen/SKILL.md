@@ -30,6 +30,16 @@ Recommended additional data:
 - What the business knows about who actually buys.
 - Any exclusions applied.
 
+## How to pull this
+
+Interface labels move between Google Ads releases. Where a name below does not match what you see, the report is still the one described.
+
+1. Open the campaign's audience view and segment by audience segment, so each list has its own row rather than being folded into the campaign.
+2. Add: `Cost`, `Conversions`, `Cost / conv.` and `Impressions`.
+3. Separately, open the audience manager to get each list's size and, critically, when it was last refreshed. That date is not in the performance report.
+4. Set a closed date range with enough volume that each segment clears roughly 30 results. Below that, this skill stops at its first row and says so.
+5. **The trap:** a segment used for observation rather than targeting still gets a row, and it is not steering anything. Check which mode each is in before reading the spread as evidence about your targeting.
+
 ## Before analysis
 
 1. Separate what constrains delivery from what merely hints at it. Some segment types narrow the auction, others are signals the system may ignore when it finds better.
@@ -56,8 +66,16 @@ Every threshold is a starting heuristic, not a Google rule. Recalibrate per acco
 |---:|---|---|
 | 1 | Not enough to judge | Any segment under roughly 30 results in the window [heuristic], or the account reports no segment-level performance at all |
 | 2 | Signal is misaimed | Every seed list older than 90 days, OR the leading segment does not match the described customer |
-| 3 | Signal is decorative | Segments within 15% of each other on cost per result |
-| 4 | Signal is doing work | Spread above 25% and the leader matches the described customer |
+| 3 | Signal is decorative | Spread on cost per result is 15% or less |
+| 4 | Signal is doing work | Spread above 15% and the leader matches the described customer |
+| 5 | Spread without a story | Spread above 15% but the leader is not the described customer, or you cannot tell. The segments are separating; nobody can yet say the separation is the audience rather than the placements it happened to win. Report the spread, name what would settle it, and do not call the targeting good |
+
+Spread here means the gap between the best and worst segment's cost per result,
+as a share of the best. One number, one definition; a spread of exactly 15%
+belongs to row 3 and nowhere else. Between 15% and 25% the separation is real
+but small, which is why row 5 exists: it used to fall through the table entirely
+and two readers would answer it differently and both believe the rubric sent
+them there.
 
 When the account exposes no segment-level performance this skill stops at row 1. It has no fallback read, unlike `money-split-review-demand-gen`, and inventing a verdict from the segment list alone would be exactly the thing this pack refuses elsewhere.
 
@@ -69,7 +87,10 @@ Broad rule: running broad is a legitimate choice on this campaign type. It stops
 
 ### Signal verdict
 
-Doing work, decorative, or misaimed.
+One of the five in the table: doing work, decorative, misaimed, spread without a
+story, or not enough to judge. All five, because the two the earlier version
+omitted are the ones this skill most often reaches - "not enough to judge" is the
+row it stops at whenever the account cannot report segment performance.
 
 ### Segment table
 

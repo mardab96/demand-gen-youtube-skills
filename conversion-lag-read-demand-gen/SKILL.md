@@ -29,6 +29,15 @@ Recommended additional data:
 - Whether view-through conversions are included in the figure.
 - The business's own timestamps for the outcome.
 
+## How to pull this
+
+Interface labels move between Google Ads releases. Where a name below does not match what you see, the report is still the one described.
+
+1. Export the campaign report segmented by day for a closed range, and **write down the date you pulled it**. That date is the input the script needs.
+2. Add: `Conversions`, `View-through conv.` and `Engaged-view conversions`.
+3. Wait several days and export the identical range again, unchanged in every respect except the pull date.
+4. **The trap:** the two files must cover the same range, not the same number of days. Re-running "last 7 days" a week later gives you two different weeks and a curve that means nothing, and it is the single most common way this measurement gets ruined.
+
 ## Before analysis
 
 1. Ask whether two pulls exist. Without them, stop and say so; there is no fallback that produces this number.
@@ -39,8 +48,8 @@ Recommended additional data:
 ## Analysis workflow
 
 1. For each day in the overlap, compare the value at first pull against the later pull.
-   **Run `../scripts/lag_curve.py early.csv late.csv` rather than doing this by eye.** It owns none of the thresholds, it implements the ones in this file, and it exists because matching two CSVs day by day is where a manual read silently misaligns rows. Its output is the fill curve and the waiting rule.
-2. Compute the share of the final figure visible after 1, 3, 7 and 14 days.
+   **Run `../scripts/lag_curve.py early.csv late.csv --as-of YYYY-MM-DD` rather than doing this by eye.** It owns none of the thresholds, it implements the ones in this file, and it exists because matching two CSVs day by day is where a manual read silently misaligns rows. Its output is the fill curve, the flattening day and the waiting rule.
+2. Compute the share of the final figure visible by AGE, meaning how old each day was when the early pull was taken. One pull over a seven-day range gives you seven ages at once: the last day of the range was one day old, the first was seven. That is the fill curve, and `--as-of` is required precisely because without the pull date those ages are unknowable. Averaging days of different ages into one number overstates the day-one share, which shortens the waiting rule in the same direction as the premature pause this skill exists to prevent.
 3. Where possible, compute the curve separately for each credit type the account exposes: click-through, engaged-view and view-through. They fill on different schedules, and Demand Gen carries engaged-view credit inside the headline count, so a single blended curve hides the fastest and the slowest signal at once.
 4. Identify the day the curve flattens.
 5. Convert it into a waiting rule expressed in days.
@@ -50,11 +59,19 @@ Recommended additional data:
 
 Every threshold is a starting heuristic, not a Google rule. Recalibrate per account.
 
+"Visible at day one" means the share of a day's eventual figure that was showing
+when that day was one day old. Read it off the fill curve, never off a pooled
+average of days of mixed ages. Where the range contains no one-day-old day, the
+youngest available age is a ceiling: the true day-one share is lower and the
+waiting rule is at least as long.
+
+Read top to bottom and stop at the first row that matches.
+
 | Verdict | Criteria |
 |---|---|
-| Judge after 2-3 days | 70%+ of the final figure visible at day one [heuristic] |
-| Judge after 7 days | 40-70% visible at day one |
-| Judge after 14 days | Under 40% visible at day one, OR view-through credit is a large share, OR the business cycle includes a human step |
+| Judge after 14 days | Under 40% visible at day one [heuristic], OR view-through credit is a large share, OR the business cycle includes a human step |
+| Judge after 7 days | 40% up to but not including 70% visible at day one |
+| Judge after 2-3 days | 70% or more visible at day one |
 
 Do-not-decide rule: no pause, no cut and no asset kill inside the unfinished window. Where a call must come sooner, make it on leading indicators such as cost per engaged view or click-through rate, and say in the output that it is a leading-indicator call.
 

@@ -30,6 +30,16 @@ Recommended additional data:
 - The date each asset was added.
 - Any assets rejected or limited by policy.
 
+## How to pull this
+
+Interface labels move between Google Ads releases. Where a name below does not match what you see, the report is still the one described.
+
+1. Open the campaign's assets view, which lists every image, video, headline and description in the campaign.
+2. Add the policy or approval status column. This is the whole reason to pull it rather than looking at the campaign in the editor.
+3. Record the aspect ratio of every asset. Where the interface does not show it, take it from the source file dimensions.
+4. Note the count of headlines and descriptions too. A format with one headline has no rotation and behaves like a single asset.
+5. **The trap:** a rejected or policy-limited asset looks exactly like an absent one in delivery, and exactly like a present one in a list of what you uploaded. Pull the status column or this skill will count assets that are not running.
+
 ## Before analysis
 
 1. Start from the inventory below, then list what this campaign actually has. The gap is the whole analysis. Without a written spec the coverage grid has no rows and the model invents the left-hand column on every run.
@@ -60,11 +70,21 @@ Treat headline and description counts as part of coverage too: a format with one
 
 Every threshold is a starting heuristic, not a Google rule. Recalibrate per account.
 
-| Verdict | Criteria |
-|---|---|
-| Coverage is adequate | Every required ratio present with at least two assets each [heuristic], no rejected assets, spend reaching more than one surface |
-| Coverage is thin | A required ratio present with only one asset, OR one rejected asset in a format with no backup |
-| Coverage is blocking delivery | A required ratio from the inventory absent entirely, OR spend concentrated on one surface that matches the only ratio present |
+Read top to bottom and stop at the first row that matches, so an account that is
+both thin and blocked is reported by its worse problem.
+
+| Order | Verdict | Criteria |
+|---:|---|---|
+| 1 | Coverage is blocking delivery | A required ratio from the inventory absent entirely, OR spend concentrated on one surface that matches the only ratio present |
+| 2 | Coverage is thin | A required ratio present with only one asset, OR one rejected asset in a format with no backup |
+| 3 | Coverage is adequate | Every required ratio present with at least two assets each [heuristic] and no rejected assets |
+
+The spend clause was removed from row 3 deliberately. This skill's first stated
+trigger is a pre-launch check, where spend is zero and no distribution exists
+yet, and requiring it there meant a fully prepared campaign matched no row at
+all. Where the campaign is live, read the distribution with
+`money-split-review-demand-gen` instead: concentration is a delivery question,
+and it belongs to the skill that can act on it.
 
 Two-per-format rule: a single asset per format means one rejection or one fatigue curve takes the whole format offline. Treat one as zero when planning production.
 
@@ -98,7 +118,9 @@ What the account did not expose, such as asset-level performance.
 
 Campaign has four 9:16 videos, no 1:1, no 16:9 and no images at all. Two of the four videos are policy-limited, so the campaign has **two working assets, not four**, and both are the same shape.
 
-Verdict: **coverage is blocking delivery** — three ratios from the inventory are absent entirely. Production list, ranked by what each unlocks rather than by effort: two 16:9 videos first, then 1:1 and 4:5 statics.
+Verdict: **coverage is blocking delivery** — five ratios from the inventory are absent entirely. Count them against the table above rather than from memory: image 1.91:1, image 1:1, image 4:5, video 16:9 and video 1:1. Logo coverage is unstated in this example, which is its own finding and goes in the missing-data section rather than being assumed present.
+
+Production list, ranked by what each unlocks rather than by effort: two 16:9 videos first, since landscape video is the shape this campaign cannot reach at all; then 1:1 and 4:5 statics; then 1.91:1 landscape statics and a 1:1 video. Replacing the two policy-limited verticals comes after all of that, because the campaign already delivers in that shape.
 
 **Handoff, so this does not become the same finding twice:** if the operator also arrived here from a spend-concentration reading, that read belongs to `money-split-review-demand-gen` and this skill supplies only the production list. Do not restate the surface split; cite it.
 

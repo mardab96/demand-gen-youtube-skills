@@ -30,6 +30,15 @@ Recommended additional data:
 - Recent changes to the strategy or target, with dates.
 - The conversion lag for this account.
 
+## How to pull this
+
+Interface labels move between Google Ads releases. Where a name below does not match what you see, the report is still the one described.
+
+1. Open the campaign report over the trailing 30 days, and again segmented by week over the same period.
+2. Add: `Conversions`, `Conv. value`, `Cost / conv.` and `Cost`. The weekly segment is what tells you whether the volume is stable or merely large on average.
+3. Note the current bid strategy and every edit made to its target, with dates.
+4. **The trap:** the `Conversions` column on this campaign type includes engaged-view credit, so the volume you are checking against the floor is not all click-driven. A campaign that looks like it clears 50 on click behaviour alone may not.
+
 ## Before analysis
 
 1. Read the weekly conversion volume before anything else. Almost every finding here follows from it.
@@ -46,17 +55,35 @@ Recommended additional data:
 5. Count strategy and target edits in the period; more than one a fortnight explains instability on its own.
 6. Recommend one strategy, and state the volume condition under which the account should move to the next one up.
 
+
+## When another skill owns the question
+
+- **"How long until these numbers are finished?"** That belongs to
+  `conversion-lag-read-demand-gen`, which is the only skill in this pack that
+  measures the fill curve, and the only one that owns the waiting-rule
+  thresholds. This skill consumes that answer and never restates the curve. If
+  you do not have a measured lag for the account, say so here rather than
+  assuming a window: a strategy called starved on unfinished weeks is the most common false diagnosis this skill exists to prevent.
+
 ## Decision rules
 
 Every threshold is a starting heuristic, not a Google rule. Recalibrate per account.
 
 ⚠️ **The volume figure people quote for this campaign type is per 30 days, not per week.** The commonly cited guidance for target CPA on Google's non-Search inventory is on the order of 50 conversions in the preceding 30 days, which is roughly 12 a week, not 50. An earlier version of this table used 50 per week and pushed almost every small account into clicks-only bidding, where the conversion signal never grows enough to leave. Treat the numbers below as a starting point and verify against current Google guidance for your campaign type.
 
-| Verdict | Criteria |
-|---|---|
-| Bid to conversions with a target, or to value | Roughly 50+ conversions in the trailing 30 days [heuristic], stable within roughly 30% week to week, and real varied values if bidding to value |
-| Bid to conversions without a target | Roughly 15-50 in the trailing 30 days |
-| Bid to clicks for now | Under roughly 15 in the trailing 30 days, OR conversion values are a repeated default |
+Read top to bottom and stop at the first row that matches.
+
+| Order | Verdict | Criteria |
+|---:|---|---|
+| 1 | Bid to clicks for now | Under 15 conversions in the trailing 30 days [heuristic], OR conversion values are a repeated default |
+| 2 | Bid to conversions without a target | 15 to 50 conversions in the trailing 30 days, OR 50+ conversions swinging more than roughly 30% week to week |
+| 3 | Bid to conversions with a target, or to value | Over 50 in the trailing 30 days, swing 30% or less, and real varied values if bidding to value |
+
+Row 2 carries the unstable case on purpose. Volume above the floor with a wild
+weekly swing was the input that matched no row in an earlier version, and it is
+the single most common complaint that brings anyone to this skill. A target set
+on a swinging series chases last week; conversion bidding without one still
+uses the signal without pretending the number is stable enough to aim at.
 
 **The trap in the bottom row, which the earlier version walked straight into:** maximise clicks does not feed the conversion signal, so a campaign parked there does not accumulate its way up to the next band. Where you recommend clicks, also name what will move the account out of it — usually a shallower optimisation event with enough volume, or consolidating ad sets so one of them clears the floor.
 

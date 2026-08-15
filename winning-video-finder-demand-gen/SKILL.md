@@ -30,6 +30,15 @@ Recommended additional data:
 - The hook of each asset, meaning what happens in the first three seconds.
 - Any asset paused mid-flight and when.
 
+## How to pull this
+
+Interface labels move between Google Ads releases. Where a name below does not match what you see, the report is still the one described.
+
+1. Open the asset-level report for the campaign, not the campaign or ad-group total.
+2. Add: `Impressions`, `Cost`, `Conversions`, `Clicks` and the performance label where the account shows one.
+3. Set a closed date range long enough that each asset has meaningful volume, and record the date each asset entered the campaign.
+4. **The trap:** assets do not get equal exposure, so the one with the most conversions is often just the one that was served most. An asset live for four days is not comparable to one live for forty, and nothing in the report will warn you.
+
 ## Before analysis
 
 1. Check how long each asset has been live. An asset added last week cannot be compared with one that has run a month.

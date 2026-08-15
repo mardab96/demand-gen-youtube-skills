@@ -6,8 +6,10 @@ in its own directory.
 
 ## What these skills are for
 
-Demand Gen spends across YouTube, Shorts, Discover and Gmail and reports one
-blended result. It counts views more than one way, and it credits conversions to
+Demand Gen spends across YouTube, Discover, Gmail and Display and reports one
+blended result by default, though the channel breakdown and the channel controls
+both exist for the operator who goes to find them. (Shorts is YouTube inventory,
+not a separate channel, and is named that way throughout the pack.) It counts views more than one way, and it credits conversions to
 people who never clicked. Most operator questions about this campaign type are
 therefore questions about the report rather than about the campaign, and that is
 what the pack answers first.
@@ -23,8 +25,11 @@ what the pack answers first.
 - **Thresholds are heuristics.** Every number carries a unit and is labelled as a
   starting point to recalibrate per account, never as published Google guidance.
 - **One home per threshold.** A number lives in the owning skill's Decision rules.
-  Other skills, scripts and examples cite that home rather than restating the
-  value, so the pack does not drift apart on the next edit.
+  Other skills and examples cite that home rather than restating the value, so the
+  pack does not drift apart on the next edit. Scripts are the one exception, since
+  code cannot cite: a script may restate a threshold as a literal, and every such
+  literal carries a comment naming the skill that owns it. A script that invents a
+  threshold with no home is a defect, not an exception.
 
 ## Where to start
 
@@ -40,7 +45,9 @@ Several skills deliberately hand off rather than duplicate:
   causation question to `incremental-lift-design`, which is the only skill that
   designs a test.
 - `weekly-readout` and `bidding-strategy-fit` both defer the question of unfinished
-  days to `conversion-lag-read` instead of restating its curve.
+  days to `conversion-lag-read` instead of restating its curve. Both carry that
+  pointer in a "When another skill owns the question" block; if you find one that
+  only says "check the conversion lag" in prose, the block was lost in an edit.
 - `money-split-review` routes an asset-shape finding to `creative-coverage-audit`
   rather than producing a production list itself.
 
