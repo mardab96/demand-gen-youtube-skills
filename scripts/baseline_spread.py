@@ -17,7 +17,9 @@ Required columns (case-insensitive): week, value
 `value` is the business outcome the test will read: revenue, orders or leads.
 Never platform-reported conversions.
 
-Exit code 0 when the baseline supports a readable test, 1 when it does not.
+Exit codes: 0 the baseline supports a readable test, 1 it does not, 2 the file
+could not be read. 1 and 2 are kept apart on purpose - a header typo must not
+read as a verdict about the account.
 """
 import csv
 import statistics
@@ -44,7 +46,7 @@ def main(path):
                 "a short history.",
                 file=sys.stderr,
             )
-            return 1
+            return 2
 
         for r in reader:
             raw = (r.get(lowered["value"]) or "").strip().replace(",", "")
@@ -57,14 +59,19 @@ def main(path):
         print(f"Note: {unreadable} row(s) had an unreadable value and were skipped.\n")
 
     if len(vals) < 4:
+        # Four is a floor on this SCRIPT's arithmetic, not the skill's readability
+        # threshold: a median of deviations means nothing on three points. The
+        # skill's own floor is 8 weeks and lives in its Decision rules.
         print(f"STOP: the 'value' column parsed on only {len(vals)} week(s). "
-              "Need at least 4 to say anything.", file=sys.stderr)
-        return 1
+              "A spread cannot be measured on fewer than 4. (The skill's own floor "
+              "for a readable test is 8 weeks; this is just the arithmetic floor.)",
+              file=sys.stderr)
+        return 2
 
     med = statistics.median(vals)
     if med == 0:
         print("STOP: median is zero, spread is undefined.", file=sys.stderr)
-        return 1
+        return 2
 
     deviations = [abs(v - med) / med for v in vals]
     spread = max(deviations)

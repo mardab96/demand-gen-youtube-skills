@@ -72,10 +72,11 @@ Every threshold is a starting heuristic, not a Google rule. Recalibrate per acco
 
 Spread here means the gap between the best and worst segment's cost per result,
 as a share of the best. One number, one definition; a spread of exactly 15%
-belongs to row 3 and nowhere else. Between 15% and 25% the separation is real
-but small, which is why row 5 exists: it used to fall through the table entirely
-and two readers would answer it differently and both believe the rubric sent
-them there.
+belongs to row 3 and nowhere else. Row 5 exists because separation on its own is not evidence about your targeting:
+segments can separate because one happened to win cheaper placements. Any spread
+above 15% whose leader is not the customer you described lands there. Before that
+row existed the case fell through the table entirely, and two readers answered it
+differently while both believed the rubric had sent them there.
 
 When the account exposes no segment-level performance this skill stops at row 1. It has no fallback read, unlike `money-split-review-demand-gen`, and inventing a verdict from the segment list alone would be exactly the thing this pack refuses elsewhere.
 

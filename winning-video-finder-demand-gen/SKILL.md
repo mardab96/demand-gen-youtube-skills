@@ -64,8 +64,16 @@ Every threshold is a starting heuristic, not a Google rule. Recalibrate per acco
 | Order | Verdict | Criteria |
 |---:|---|---|
 | 1 | Delivery artefact, not a winner | One asset holds 70%+ of impressions [heuristic] and its cost per result is within roughly 15% of the campaign average. Exclude it, then run tests 2 and 3 on the remainder |
-| 2 | Clear winner | One asset at least roughly 30% better on cost per result than the average of the remainder, on 1,000+ impressions and 14+ days live |
+| 2 | Clear winner | One asset at least roughly 30% better on cost per result than the average of the remainder, on 1,000+ impressions and 14+ days live, **and** the remainder it beat holds at least 1,000 impressions between them |
+| 2b | Winner unproven, nothing to compare against | The leader qualifies on every count above except that the rest of the campaign never got enough delivery to form a comparison. Report the leader's own figures, say plainly that there is no contest, and propose a rotation that gives another asset a hearing before crowning anything |
 | 3 | No winner yet | Everything else: assets within roughly 30% of each other, OR the leader is under 1,000 impressions, OR the leader is under 14 days live |
+
+Dominance rule: row 1 catches an asset that dominates delivery **and** performs
+averagely. An asset that dominates delivery and performs WELL is the harder case,
+because it looks like proof and is often just the only asset that ran. Row 2b
+exists for it. The question to answer before scaling on that evidence is not
+"which asset won" but "did any other asset get a fair hearing", and where the
+answer is no, the finding is a rotation problem rather than a creative winner.
 
 Retirement rule: an asset with meaningful impressions and materially worse cost per result is a retirement candidate. An asset with almost no impressions is not a loser; it never got a hearing, and pausing it teaches nothing.
 
@@ -98,7 +106,9 @@ Assets to stop, and assets that were never really tested.
 
 Six assets. Test 1: one asset carries **74%** of impressions at a cost per result 6% off the campaign average, so it fires the delivery-artefact rule and is excluded.
 
-Test 2 on the remaining five: one asset has 2,300 impressions over 21 days at a cost per result **44% better than the average of the remainder**. That clears all three conditions, so it is the **clear winner** — the earlier draft of this example called it "no winner", which its own table does not support.
+Test 2 on the remaining five: one asset has 2,300 impressions over 21 days at a cost per result **44% better than the average of the remainder**, and that remainder carries 1,900 impressions between its four assets. That clears every condition including the one that matters most here — there was something real to beat — so it is the **clear winner**. An earlier draft of this example called it "no winner", which its own table does not support.
+
+Had those four carried 300 impressions between them instead of 1,900, the same leader would land in row 2b: strong figures, no contest, and the finding would be a rotation problem rather than a creative winner.
 
 Two assets sit under 400 impressions and are marked untested rather than failed, because test 3's impression floor is about whether an asset got a hearing, not about whether it is any good.
 

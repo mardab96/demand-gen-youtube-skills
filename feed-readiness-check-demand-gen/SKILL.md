@@ -34,7 +34,7 @@ Recommended additional data:
 
 Interface labels move between Google Ads releases. Where a name below does not match what you see, the report is still the one described.
 
-1. This one is not in Google Ads. Open Merchant Center and go to the products and diagnostics views.
+1. This one is not in Google Ads. Open Merchant Center and find the product list and the view that lists issues. These screens have been reorganised more than once, so the names in your account may differ; you are looking for total products submitted, how many are serving, and the reasons blocking the rest.
 2. Capture: total products submitted, how many are active, and every disapproval reason with its item count.
 3. Spot-check at least ten items against the live shop page: price, availability, title and identifier. Ten is a floor, not a target.
 4. **The trap:** active, approved, eligible and eligible-for-this-campaign are four different states and the summary number blends them. A feed that reports healthy at the top can still have most of its catalogue ineligible for the surface you are buying.
@@ -59,8 +59,6 @@ Interface labels move between Google Ads releases. Where a name below does not m
 
 Every threshold is a starting heuristic, not a Google rule. Recalibrate per account.
 
-| Verdict | Criteria |
-|---|---|
 Read top to bottom and stop at the first row that matches, so a feed that is both
 under-populated and mispriced is reported by its worse problem.
 
@@ -107,7 +105,7 @@ Ranked by items unlocked.
 
 Feed submits 1,240 items against a catalogue of 1,900. Of those, 812 are active, which is **43% of the intended catalogue** and puts the feed in the "not ready" band on its own. One disapproval reason accounts for 310 blocked items, which is **25% of what was submitted and 16% of the intended catalogue** — both denominators stated, because the guardrail at the bottom of this skill forbids a bare percentage and an earlier draft of this example broke it.
 
-Two of five spot-checked prices are stale by one promotional cycle.
+Two of the ten spot-checked prices are stale by one promotional cycle.
 
 Verdict: **not ready**. The single disapproval reason ranks first in the fix order because it unlocks more items than anything else available, and the price staleness is flagged as blocking regardless of any count, because a wrong price damages trust with the customer rather than merely reducing reach.
 

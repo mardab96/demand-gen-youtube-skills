@@ -34,7 +34,7 @@ swung between 20% and 80% would not be, and the skill says to report it as unsta
 rather than to average it into a rule.
 
 The script now prints a second curve for view-through credit, and on this data it
-lands at 37% against 39% for the total, so both give the same fourteen-day rule. That
+lands at 38% against 39% for the total, so both give the same fourteen-day rule. That
 is not always true. Where the two disagree, the skill takes the slower one, and the
 script says so in its output rather than leaving the reader to notice.
 

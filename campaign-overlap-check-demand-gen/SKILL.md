@@ -72,8 +72,6 @@ Interface labels move between Google Ads releases. Where a name below does not m
 
 Every threshold is a starting heuristic, not a Google rule. Recalibrate per account.
 
-| Verdict | Criteria |
-|---|---|
 Read top to bottom and stop at the first row that matches.
 
 | Order | Verdict | Criteria |

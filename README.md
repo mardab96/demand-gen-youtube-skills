@@ -13,7 +13,7 @@ Four of them refuse to answer under stated conditions rather than return somethi
 
 A fifth, the **money-split** skill, does something related rather than refusing: when the account cannot report the channel split it does not stop and does not guess either, it falls back to the read the account can support and says which of the two it ran.
 
-Shorts is deliberately absent from that channel list. It is YouTube inventory, not a separately selectable or separately reported channel, and a pack that lists it sends readers looking for a toggle and a row that do not exist.
+The channel list Google exposes has changed more than once and may differ in your account: some accounts show Shorts and YouTube in-stream and in-feed as separate selections, others fold them into one YouTube entry. Read your own campaign's channel controls rather than trusting any list, including this one. [HIPOTEZA — review 2026-11-15.]
 
 These skills read exports and hand back a decision. They do not need write access, they do not change campaigns, and they do not touch budgets.
 
@@ -62,6 +62,19 @@ Bring exports, not screenshots. Most skills open by asking what the account can 
 Start with `view-through-credit-check-demand-gen` if you do not know where to begin. It needs the least setup — the conversion columns and your own order count for a closed period — and it most often changes a decision that was about to be made.
 
 Go to `money-split-review-demand-gen` second. Demand Gen lets you report and control channels separately, so the split it produces turns straight into a setting you can change.
+
+## Two things the pack does not solve for you
+
+**Modelled conversions.** Part of what any Google Ads account reports was
+estimated rather than observed, because consent choices and browser limits break
+the link between an ad and a real conversion. These skills separate credit types
+and compare platform figures against business figures; they cannot tell you how
+much of a remaining gap is modelling. `view-through-credit-check-demand-gen`
+says where that question starts.
+
+**Value.** Every decision rule in the pack is count-based. If your clients think
+in revenue and return rather than conversions, the splits here still apply, but
+you will be doing the value arithmetic yourself.
 
 ## What these are not
 

@@ -1,3 +1,7 @@
+Columns feeding this run (check these before trusting anything below):
+  conversions curve <- 'conversions'
+  view-through curve <- 'view_through_conversions'
+
 Early pull taken 2026-07-13. Overlapping days: 7, ages 1 to 7 days.
 
   age date               early     final   visible view-through vis
@@ -20,7 +24,7 @@ Fill curve (share of the final figure visible, by age at first sight)
           7d           45%              41%
 
 Share visible at 1 day(s) old: 39%
-Curve flattens at: 1 day old
+Shape of the curve: essentially flat from 1 to 7 days old, around 39%. Nothing here shows the figure filling, so the fill happens later than 7 days. Pull a wider range before trusting any plateau
 Waiting rule: judge after 14 days
 
 View-through credit only: 38% visible at 1 day(s) old

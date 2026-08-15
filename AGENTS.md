@@ -8,8 +8,11 @@ in its own directory.
 
 Demand Gen spends across YouTube, Discover, Gmail and Display and reports one
 blended result by default, though the channel breakdown and the channel controls
-both exist for the operator who goes to find them. (Shorts is YouTube inventory,
-not a separate channel, and is named that way throughout the pack.) It counts views more than one way, and it credits conversions to
+both exist for the operator who goes to find them. (Whether Shorts appears as its own
+selection or is folded into YouTube differs between accounts and has changed over
+time, so the pack tells readers to read their own channel controls rather than
+asserting a list. Do not "correct" this in either direction without a live
+account in front of you.) It counts views more than one way, and it credits conversions to
 people who never clicked. Most operator questions about this campaign type are
 therefore questions about the report rather than about the campaign, and that is
 what the pack answers first.

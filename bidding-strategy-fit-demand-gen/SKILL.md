@@ -118,7 +118,7 @@ The volume at which to change strategy, stated as a number.
 
 Campaign bids to target CPA at a target 45% below anything it has recorded, on **41 conversions in the trailing 30 days**, with the target edited three times in five weeks.
 
-Verdict: **bid to conversions without a target**. 41 sits in the middle band, so the strategy itself is not the problem; the target is. It is named as a throttle rather than a goal and removed, editing is stopped for four weeks, and the move-up condition to a target is set at a sustained 50 in the trailing 30 days.
+Verdict: **bid to conversions without a target**. 41 sits in the middle band, so the strategy itself is not the problem; the target is. It is named as a throttle rather than a goal and removed, editing is stopped for four weeks, and the move-up condition to a target is set at a sustained figure above 50 in the trailing 30 days.
 
 Had the campaign been at 11 in thirty days rather than 41, the recommendation would be clicks — together with the named route out, because clicks alone would never get it back.
 

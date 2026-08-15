@@ -52,7 +52,7 @@ Recommended additional data:
 
 Interface labels move between Google Ads releases. Where a name below does not match what you see, the report is still the one described.
 
-1. The input here is a business outcome, not a platform report. Pull weekly revenue, orders or leads from the shop or CRM for at least the last twelve weeks.
+1. The input here is a business outcome, not a platform report. Pull weekly revenue, orders or leads from the shop or CRM for at least the last eight weeks, and twelve if you have them.
 2. One row per week, two columns: `week` and `value`. That is exactly what `../scripts/baseline_spread.py` reads.
 3. Mark every week that contained a promotion, a price change, a stockout or a seasonal peak.
 4. **The trap:** never use platform-reported conversions as the baseline. A test built to measure whether the platform's numbers are real cannot be judged against the platform's numbers.
@@ -67,7 +67,7 @@ Interface labels move between Google Ads releases. Where a name below does not m
 ## Analysis workflow
 
 1. Compute weekly business outcomes, their median and their spread, so the test can be sized against real noise.
-   **Run `../scripts/baseline_spread.py weekly.csv` for this step.** It implements the readiness thresholds in this file and returns a non-zero exit code when the baseline cannot support a readable test, so a decorative holdout has to be approved deliberately rather than by accident.
+   **Run `../scripts/baseline_spread.py weekly.csv` for this step.** It implements the readiness thresholds in this file and returns exit code 1 when the baseline cannot support a readable test, so a decorative holdout has to be approved deliberately rather than by accident. Exit code 2 is different and means it could not read your file at all; do not read that as a verdict about the account.
 2. Choose the shape: geo split where regions are comparable, audience holdout where they are not, on-off where the account is small and the baseline is quiet.
 3. Size the test: how many weeks are needed for a difference to clear normal variation.
 4. Define the single read-out metric, taken from business data and never from the platform's own conversions.
@@ -128,7 +128,7 @@ Campaign reports 61 conversions a week; business revenue has been flat for **nin
 
 Design: a three-week geo holdout across two comparable regions, read on shop revenue rather than platform conversions, expected outcomes written down in advance, and a stop rule at a 20% revenue drop in the held-out region.
 
-**One platform constraint to state in the output, because the reader will hit it immediately:** Google Ads drafts and experiments do not cover this campaign type, so a geo split has to be built by hand as two duplicate campaigns on separate geographies. That carries its own learning period and its own budget, and both belong in the cost the business is accepting. Google's own Conversion Lift study is the alternative worth asking your rep about before building it yourself; it is usually gated on spend.
+**One platform constraint to state in the output, because the reader will hit it immediately:** Google Ads does run experiments on this campaign type, but not in the geo-holdout shape this design needs, and drafts are not available for it, so a geo split has to be built by hand as two duplicate campaigns on separate geographies. [HIPOTEZA — review 2026-11-15: confirm which experiment types Demand Gen currently supports before relying on this sentence.] That carries its own learning period and its own budget, and both belong in the cost the business is accepting. Google's own Conversion Lift study is the alternative worth asking your rep about before building it yourself; it is usually gated on spend.
 
 ## Guardrails
 

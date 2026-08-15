@@ -65,11 +65,19 @@ average of days of mixed ages. Where the range contains no one-day-old day, the
 youngest available age is a ceiling: the true day-one share is lower and the
 waiting rule is at least as long.
 
-Read top to bottom and stop at the first row that matches.
+**A measured plateau beats this table.** Where your two pulls span enough days
+that the curve stops rising inside the range, the age at which it levels off IS
+the waiting rule, and the bands below are not consulted. They exist for the
+common case where the range is too short to reach the plateau, and a day-one
+share is the only thing you can read. `../scripts/lag_curve.py` applies that
+precedence itself and says which of the two it used.
+
+The bands, for that fallback case. Read top to bottom and stop at the first row
+that matches.
 
 | Verdict | Criteria |
 |---|---|
-| Judge after 14 days | Under 40% visible at day one [heuristic], OR view-through credit is a large share, OR the business cycle includes a human step |
+| Judge after 14 days | Under 40% visible at day one [heuristic], OR view-through credit is more than half of total credited (`Conversions + View-through conv.`), OR the sale needs a human step such as a call, a quote or a viewing |
 | Judge after 7 days | 40% up to but not including 70% visible at day one |
 | Judge after 2-3 days | 70% or more visible at day one |
 

@@ -40,8 +40,12 @@ campaigns and reads like a mid-table performer. On click-through alone it is 116
 nearly double the worst Search campaign.
 
 The platform sum across the three campaigns is 198 against 129 orders in the shop for
-the same closed fortnight, a ratio of 1.53. That gap is large enough to be accounted
-for by the exposure credit on its own.
+the same closed fortnight, a ratio of 1.53. The exposure credit inside that reported
+total is the 58 engaged-view conversions, so it accounts for most of the 69 gap but
+not all of it. Eleven are left over, and the honest reading is that credit type
+explains the bulk of the disagreement while something else - modelled conversions,
+or orders that advertising never caused - explains the rest. Do not present the
+credit split as the whole story.
 
 None of this proves the campaign is worthless. What it establishes is that the
 reported figure cannot sit in the same table as a Search figure, which is what the

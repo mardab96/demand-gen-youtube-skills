@@ -9,7 +9,7 @@ description: Breaks a Google Ads Demand Gen campaign down by channel across YouT
 
 One campaign spent across four channels - YouTube, Discover, Gmail and Display - and reported a single number.
 
-Shorts is YouTube inventory rather than a fifth channel, so it does not appear as its own row or its own switch. Where this file says short-form, it means the vertical inventory inside YouTube.
+Whether short-form appears as its own row and its own switch, or sits inside a single YouTube entry, differs between accounts. Check your campaign's own channel controls before concluding a row is missing. [HIPOTEZA — review 2026-11-15.]
 
 Common user requests:
 
@@ -47,7 +47,7 @@ Interface labels move between Google Ads releases. Where a name below does not m
 2. Add, at minimum: `Cost`, `Impressions`, `Clicks`, `Conversions` and `Conv. value`. Without cost and conversions on the same rows there is no gap to measure.
 3. Set a closed date range with no format-mix change inside it. A campaign that gained a new asset shape mid-range will show a split that describes the change, not the campaign.
 4. Separately, open the campaign settings and note which channels are switched on. An enabled channel taking no spend and a disabled channel look identical in a report that only lists what spent.
-5. **The trap:** Shorts is not a row here, because it is YouTube inventory rather than its own channel. If you are hunting for a Shorts line you will conclude the report is broken when it is not.
+5. **The trap:** the exact set of channel rows differs between accounts and has changed over time. If a row you expected is missing, check the campaign's channel controls before concluding the report is broken.
 
 ## Before analysis
 
@@ -64,7 +64,7 @@ Interface labels move between Google Ads releases. Where a name below does not m
 3. Compare share of spend against share of conversions. The gap is the finding.
 4. Check whether one surface carries most of the impressions but little of the outcome.
 5. Look at whether the format mix explains the split: a campaign with only vertical video will lean to short-form YouTube inventory by construction.
-6. Turn the read into one of three moves: **turn a channel off in campaign settings**, change the creative mix so the campaign has somewhere else to spend, or accept the split and say why.
+6. Turn the read into one of three moves, named the same way in the output section below: **exclusion** (switch a channel off), **creative mix** (give the campaign somewhere else worth spending), or **accept** the split and say why.
 
 ## Decision rules
 

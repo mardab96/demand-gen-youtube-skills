@@ -83,6 +83,35 @@ Recommended additional data:
 4. Export at campaign level, and repeat for one click-driven campaign in the same account as a contrast.
 5. **The trap:** `Conversions` and `All conv.` are different columns and on this campaign type the gap between them is routinely large. Note which one every figure in your analysis came from, and say so in the output. Subtracting the wrong pair produces a click-through figure that silently includes engaged-view credit.
 
+## Confirm this in the account before you subtract anything
+
+This skill rests on one claim: that engaged-view credit is counted inside the
+`Conversions` column while view-through credit sits outside it. On most accounts
+that holds. It is not a law of physics, it is a consequence of how the account's
+conversion actions are configured, so confirm it here rather than assuming it.
+
+1. Open the conversion actions list in the account's settings.
+2. For each action you care about, note whether it is marked primary, and what
+   its counting and inclusion settings say. Actions excluded from the main
+   reporting column will not be in `Conversions` no matter what this skill says.
+3. If the account has several conversion actions and the campaign optimises to
+   one while the report totals all of them, say so in the output. That single
+   mismatch explains more platform-versus-backend arguments than credit type does.
+
+**Modelled conversions.** Some of what the platform reports was not observed. It
+was estimated, because consent choices and browser restrictions mean a share of
+real conversions are never directly linked to the ad that caused them, and the
+platform fills that hole with a model. This matters here for one reason: it is
+a second, independent explanation for the same gap this skill measures. A
+campaign whose reported total exceeds the shop's count may be crediting exposure
+(what this skill is about), or may be modelling behaviour it could not see, or
+both, and the split between those two is not something the report will hand you.
+
+Do not present the credit split as the complete account of the gap. Where the
+numbers still disagree after this analysis, modelling is the next place to look,
+and after that the plain possibility that not every order came from advertising
+at all.
+
 ## Before analysis
 
 1. Read the conversion window off the account. A long window with view-through credit will claim a lot by construction.
@@ -105,8 +134,8 @@ Every threshold is a starting heuristic, not a Google rule. Recalibrate per acco
 
 | Verdict | Criteria |
 |---|---|
-| Comparable to click campaigns | Click-through is at least roughly 75% of **total credited** [heuristic], where total credited is `Conversions + View-through conv.` — state the denominator in the output, because the two candidate denominators differ by nearly a factor of two |
-| Report both numbers | Click-through 40-75% of total credited |
+| Comparable to click campaigns | Click-through is 75% or more of **total credited** [heuristic], where total credited is `Conversions + View-through conv.` — state the denominator in the output, because the two candidate denominators differ by nearly a factor of two |
+| Report both numbers | Click-through 40% up to but not including 75% of total credited |
 | Do not compare this to Search | Click-through under 40% of total credited, OR click-through below what the business can independently see, OR **the account cannot separate engaged-view credit at all**, in which case click-through is unknown rather than low |
 
 Comparison rule: never put a Demand Gen cost per conversion next to a Search cost per conversion without stating the view-through share of each. The two numbers answer different questions and the comparison is the single most common way this campaign type gets misjudged.
